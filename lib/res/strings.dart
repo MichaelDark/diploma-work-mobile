@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/utils/storage.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
 
 import 'strings/supported_locale.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/res/app_colors.dart';
-import 'package:flutter_dark_arch/res/strings.dart';
+import 'package:graduation_work_mobile/res/app_colors.dart';
+import 'package:graduation_work_mobile/res/strings.dart';
 
 import 'buttons/outlined_small_button.dart';
 

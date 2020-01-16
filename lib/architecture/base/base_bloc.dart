@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter_dark_arch/architecture/utils/states.dart';
-import 'package:flutter_dark_arch/utils/functional_interfaces.dart';
+import 'package:graduation_work_mobile/architecture/utils/states.dart';
+import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class BaseBloc extends BlocBase {

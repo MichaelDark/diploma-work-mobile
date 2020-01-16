@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/res/app_colors.dart';
-import 'package:flutter_dark_arch/res/strings.dart';
-import 'package:flutter_dark_arch/res/strings/supported_locale.dart';
-import 'package:flutter_dark_arch/utils/functional_interfaces.dart';
-import 'package:flutter_dark_arch/utils/storage.dart';
+import 'package:graduation_work_mobile/res/app_colors.dart';
+import 'package:graduation_work_mobile/res/strings.dart';
+import 'package:graduation_work_mobile/res/strings/supported_locale.dart';
+import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
 
 class LanguageBar extends StatelessWidget {
   final SingleCallback<SupportedLocale> onLanguageChanged;

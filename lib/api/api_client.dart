@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/api/model/forgot_password_request.dart';
-import 'package:flutter_dark_arch/api/model/login_request.dart';
-import 'package:flutter_dark_arch/api/model/request_error.dart';
-import 'package:flutter_dark_arch/res/strings.dart';
+import 'package:graduation_work_mobile/api/model/forgot_password_request.dart';
+import 'package:graduation_work_mobile/api/model/login_request.dart';
+import 'package:graduation_work_mobile/api/model/request_error.dart';
+import 'package:graduation_work_mobile/res/strings.dart';
 
 import 'api_service.dart';
 import 'api_strings.dart';

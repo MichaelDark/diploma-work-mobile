@@ -1,7 +1,7 @@
-import 'package:flutter_dark_arch/api/api_client.dart';
-import 'package:flutter_dark_arch/api/model/forgot_password_request.dart';
-import 'package:flutter_dark_arch/architecture/base/base_bloc.dart';
-import 'package:flutter_dark_arch/architecture/utils/states.dart';
+import 'package:graduation_work_mobile/api/api_client.dart';
+import 'package:graduation_work_mobile/api/model/forgot_password_request.dart';
+import 'package:graduation_work_mobile/architecture/base/base_bloc.dart';
+import 'package:graduation_work_mobile/architecture/utils/states.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ForgotPasswordPageBloc extends BaseBloc {

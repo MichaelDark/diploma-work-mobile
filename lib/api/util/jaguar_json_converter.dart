@@ -1,5 +1,5 @@
 import 'package:chopper/chopper.dart';
-import 'package:flutter_dark_arch/api/model/api_json_serializers.dart';
+import 'package:graduation_work_mobile/api/model/api_json_serializers.dart';
 
 class JaguarJsonConverter extends JsonConverter {
   @override

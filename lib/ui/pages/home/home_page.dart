@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/res/strings.dart';
-import 'package:flutter_dark_arch/ui/pages/_example/test/test_page.dart';
-import 'package:flutter_dark_arch/ui/pages/register/register_page.dart';
-import 'package:flutter_dark_arch/ui/views/language_bar.dart';
-import 'package:flutter_dark_arch/ui/views/no_glow_scroll_behavior.dart';
+import 'package:graduation_work_mobile/res/strings.dart';
+import 'package:graduation_work_mobile/ui/pages/_example/test/test_page.dart';
+import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
+import 'package:graduation_work_mobile/ui/views/language_bar.dart';
+import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
 
 class HomePage extends StatefulWidget {
   @override

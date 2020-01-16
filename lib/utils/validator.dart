@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/utils/functional_interfaces.dart';
+import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 import 'package:meta/meta.dart';
 
 class Validator {

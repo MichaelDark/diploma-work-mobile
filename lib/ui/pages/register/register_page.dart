@@ -1,24 +1,24 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/architecture/utils/async_stream_builder.dart';
-import 'package:flutter_dark_arch/architecture/utils/states.dart';
-import 'package:flutter_dark_arch/res/app_assets.dart';
-import 'package:flutter_dark_arch/res/app_colors.dart';
-import 'package:flutter_dark_arch/res/strings.dart';
-import 'package:flutter_dark_arch/ui/pages/home/home_page.dart';
-import 'package:flutter_dark_arch/ui/pages/login/login_page.dart';
-import 'package:flutter_dark_arch/ui/pages/register/register_page_bloc.dart';
-import 'package:flutter_dark_arch/ui/views/buttons/colored_button.dart';
-import 'package:flutter_dark_arch/ui/views/error_view.dart';
-import 'package:flutter_dark_arch/ui/views/inputs/default_field.dart';
-import 'package:flutter_dark_arch/ui/views/inputs/standard_field.dart';
-import 'package:flutter_dark_arch/ui/views/language_bar.dart';
-import 'package:flutter_dark_arch/ui/views/no_glow_scroll_behavior.dart';
-import 'package:flutter_dark_arch/ui/views/title_view.dart';
-import 'package:flutter_dark_arch/utils/storage.dart';
-import 'package:flutter_dark_arch/utils/validator.dart';
-import 'package:flutter_dark_arch/utils/validators.dart';
+import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
+import 'package:graduation_work_mobile/architecture/utils/states.dart';
+import 'package:graduation_work_mobile/res/app_assets.dart';
+import 'package:graduation_work_mobile/res/app_colors.dart';
+import 'package:graduation_work_mobile/res/strings.dart';
+import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
+import 'package:graduation_work_mobile/ui/pages/login/login_page.dart';
+import 'package:graduation_work_mobile/ui/pages/register/register_page_bloc.dart';
+import 'package:graduation_work_mobile/ui/views/buttons/colored_button.dart';
+import 'package:graduation_work_mobile/ui/views/error_view.dart';
+import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
+import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
+import 'package:graduation_work_mobile/ui/views/language_bar.dart';
+import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
+import 'package:graduation_work_mobile/ui/views/title_view.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
+import 'package:graduation_work_mobile/utils/validator.dart';
+import 'package:graduation_work_mobile/utils/validators.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

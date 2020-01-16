@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_dark_arch/res/strings.dart';
+import 'package:graduation_work_mobile/res/strings.dart';
 
 import 'functional_interfaces.dart';
 

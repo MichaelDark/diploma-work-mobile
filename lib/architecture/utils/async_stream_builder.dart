@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/api/model/request_error.dart';
-import 'package:flutter_dark_arch/utils/functional_interfaces.dart';
+import 'package:graduation_work_mobile/api/model/request_error.dart';
+import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 
 import 'states.dart';
 

@@ -1,5 +1,5 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter_dark_arch/utils/storage.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AuthService extends Disposable {

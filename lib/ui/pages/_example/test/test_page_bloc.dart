@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter_dark_arch/api/api_client.dart';
-import 'package:flutter_dark_arch/architecture/base/base_bloc.dart';
-import 'package:flutter_dark_arch/architecture/utils/states.dart';
-import 'package:flutter_dark_arch/models/home_item.dart';
+import 'package:graduation_work_mobile/api/api_client.dart';
+import 'package:graduation_work_mobile/architecture/base/base_bloc.dart';
+import 'package:graduation_work_mobile/architecture/utils/states.dart';
+import 'package:graduation_work_mobile/models/home_item.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TestPageBloc extends BaseBloc {

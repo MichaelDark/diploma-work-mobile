@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/main.dart';
+import 'package:graduation_work_mobile/main.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_dark_arch/res/app_colors.dart';
+import 'package:graduation_work_mobile/res/app_colors.dart';
 
 class TitleView extends StatelessWidget {
   final String text;

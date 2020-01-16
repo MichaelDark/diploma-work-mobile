@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_dark_arch/res/strings/supported_locale.dart';
+import 'package:graduation_work_mobile/res/strings/supported_locale.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';

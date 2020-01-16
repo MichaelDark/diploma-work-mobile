@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dark_arch/res/app_assets.dart';
-import 'package:flutter_dark_arch/ui/pages/home/home_page.dart';
-import 'package:flutter_dark_arch/ui/pages/register/register_page.dart';
-import 'package:flutter_dark_arch/utils/extensions/permissions.dart';
-import 'package:flutter_dark_arch/utils/storage.dart';
+import 'package:graduation_work_mobile/res/app_assets.dart';
+import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
+import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
+import 'package:graduation_work_mobile/utils/extensions/permissions.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 const _splashDuration = Duration(seconds: 1);

@@ -1,5 +1,5 @@
-import 'package:flutter_dark_arch/api/api_client.dart';
-import 'package:flutter_dark_arch/architecture/base/base_bloc.dart';
+import 'package:graduation_work_mobile/api/api_client.dart';
+import 'package:graduation_work_mobile/architecture/base/base_bloc.dart';
 
 class HomePageBloc extends BaseBloc {
   final ApiClient apiClient;
