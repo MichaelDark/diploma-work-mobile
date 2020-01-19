@@ -10,7 +10,7 @@ class UkStrings implements StringsProvider {
   String get languageShrug => 'УКР';
 
   @override
-  String get appName => 'Харківські Квести';
+  String get appName => 'Graduation Work';
 
   @override
   String get textNoInternet => 'Немає інтернету';
@@ -80,4 +80,6 @@ class UkStrings implements StringsProvider {
 
   @override
   String get tryAgain => 'Спробувати ще';
+
+  String get settings => 'Настройки';
 }

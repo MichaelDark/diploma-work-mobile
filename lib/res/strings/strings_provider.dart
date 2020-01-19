@@ -52,4 +52,6 @@ abstract class StringsProvider {
   String get takePhoto;
 
   String get tryAgain;
+
+  String get settings => 'Настройки';
 }

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
-import 'package:graduation_work_mobile/res/app_assets.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/res/strings.dart';
 import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
@@ -13,7 +12,6 @@ import 'package:graduation_work_mobile/ui/views/buttons/colored_button.dart';
 import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
-import 'package:graduation_work_mobile/ui/views/language_bar.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
 import 'package:graduation_work_mobile/ui/views/title_view.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
@@ -104,75 +102,44 @@ class _RegisterPageState extends State<RegisterPage> {
         behavior: NoGlowScrollBehavior(),
         child: ListView(
           children: <Widget>[
-            LanguageBar(),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(24)),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.of(context).blackOp50,
-                    blurRadius: 10,
-                    offset: Offset.zero,
-                  ),
-                ],
-              ),
-              margin: EdgeInsets.all(24),
-              padding: EdgeInsets.all(12),
-              child: _buildBodyColumn(),
+            TitleView(
+              text: Strings.of(context).registration,
+              textAlign: TextAlign.center,
+              fontSize: 24,
+              margin: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
             ),
+            Padding(
+              padding: EdgeInsets.all(12),
+              child: Text(
+                Strings.of(context).registerNewAccount,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ),
+            DefaultField(
+              _fields[_RegisterField.Email],
+              labelText: Strings.of(context).email,
+              nextFocus: _fields[_RegisterField.Name].node,
+            ),
+            DefaultField(
+              _fields[_RegisterField.Name],
+              labelText: Strings.of(context).name,
+              nextFocus: _fields[_RegisterField.Password].node,
+            ),
+            DefaultField(
+              _fields[_RegisterField.Password],
+              labelText: Strings.of(context).password,
+              obscuredText: true,
+              onDone: _onRegisterTap,
+            ),
+            SizedBox(height: 16),
+            _buildButtons(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildBodyColumn() {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.all(8),
-          child: Image.asset(
-            AppAssets.icLogo,
-            height: 64,
-          ),
-        ),
-        TitleView(
-          text: Strings.of(context).registration,
-          textAlign: TextAlign.center,
-          fontSize: 24,
-          margin: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-        ),
-        Padding(
-          padding: EdgeInsets.all(12),
-          child: Text(
-            Strings.of(context).registerNewAccount,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              fontFamily: 'Montserrat',
-            ),
-          ),
-        ),
-        DefaultField(
-          _fields[_RegisterField.Email],
-          labelText: Strings.of(context).email,
-          nextFocus: _fields[_RegisterField.Name].node,
-        ),
-        DefaultField(
-          _fields[_RegisterField.Name],
-          labelText: Strings.of(context).name,
-          nextFocus: _fields[_RegisterField.Password].node,
-        ),
-        DefaultField(
-          _fields[_RegisterField.Password],
-          labelText: Strings.of(context).password,
-          obscuredText: true,
-          onDone: _onRegisterTap,
-        ),
-        SizedBox(height: 16),
-        _buildButtons(),
-      ],
     );
   }
 
@@ -204,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return GestureDetector(
       onTap: _onHaveAccountTap,
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(18),
         child: Text(
           Strings.of(context).alreadyHaveAccount,
           style: TextStyle(

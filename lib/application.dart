@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'api/api_client.dart';
 import 'res/app_colors.dart';
 import 'res/strings.dart';
-import 'ui/pages/_example/test/test_page_bloc.dart';
 import 'ui/pages/forgot_password/forgot_password_page_bloc.dart';
 import 'ui/pages/home/home_page_bloc.dart';
 import 'ui/pages/login/login_page_bloc.dart';
@@ -30,7 +29,6 @@ class App extends StatelessWidget {
         Bloc((i) => LoginPageBloc(i.get<ApiClient>())),
         Bloc((i) => ForgotPasswordPageBloc(i.get<ApiClient>())),
         Bloc((i) => HomePageBloc(i.get<ApiClient>())),
-        Bloc((i) => TestPageBloc(i.get<ApiClient>())),
       ],
       dependencies: [
         Dependency((Inject i) => ApiClient(context)),

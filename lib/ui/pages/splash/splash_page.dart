@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:graduation_work_mobile/res/app_assets.dart';
 import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
 import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
 import 'package:graduation_work_mobile/utils/extensions/permissions.dart';
@@ -90,13 +89,13 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Image.asset(
-                AppAssets.icLogo,
-                width: 270,
-              ),
-            ),
+//            Padding(
+//              padding: EdgeInsets.all(16),
+//              child: Image.asset(
+//                AppAssets.icLogo,
+//                width: 270,
+//              ),
+//            ),
             Padding(
               padding: EdgeInsets.all(36),
               child: Container(

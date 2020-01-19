@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
-import 'package:graduation_work_mobile/res/app_assets.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/res/strings.dart';
 import 'package:graduation_work_mobile/ui/pages/forgot_password/forgot_password_page.dart';
@@ -13,7 +12,6 @@ import 'package:graduation_work_mobile/ui/views/buttons/colored_button.dart';
 import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
-import 'package:graduation_work_mobile/ui/views/language_bar.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
 import 'package:graduation_work_mobile/ui/views/title_view.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
@@ -96,22 +94,7 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           children: <Widget>[
             _buildBackButton(),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(24)),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.of(context).blackOp50,
-                    blurRadius: 10,
-                    offset: Offset.zero,
-                  ),
-                ],
-              ),
-              margin: EdgeInsets.all(24),
-              padding: EdgeInsets.all(12),
-              child: _buildBodyColumn(),
-            ),
+            _buildBodyColumn(),
           ],
         ),
       ),
@@ -120,14 +103,13 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildBackButton() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         IconButton(
           onPressed: () => Navigator.pop(context),
           padding: EdgeInsets.all(16),
           icon: Icon(Icons.arrow_back),
         ),
-        LanguageBar(),
       ],
     );
   }
@@ -135,13 +117,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildBodyColumn() {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.all(8),
-          child: Image.asset(
-            AppAssets.icLogo,
-            height: 64,
-          ),
-        ),
         TitleView(
           text: Strings.of(context).signIn,
           textAlign: TextAlign.center,
@@ -204,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
     return GestureDetector(
       onTap: _onForgotPasswordTap,
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(18),
         child: Text(
           Strings.of(context).iForgotPassword,
           style: TextStyle(

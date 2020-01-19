@@ -10,7 +10,7 @@ class RuStrings implements StringsProvider {
   String get languageShrug => 'РУС';
 
   @override
-  String get appName => 'Харьковские Квесты';
+  String get appName => 'Graduation Work';
 
   @override
   String get textNoInternet => 'Нет интернета';
@@ -80,4 +80,6 @@ class RuStrings implements StringsProvider {
 
   @override
   String get tryAgain => 'Попробовать снова';
+
+  String get settings => 'Настройки';
 }

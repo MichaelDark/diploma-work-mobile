@@ -1,92 +1,143 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_work_mobile/res/strings.dart';
-import 'package:graduation_work_mobile/ui/pages/_example/test/test_page.dart';
-import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
-import 'package:graduation_work_mobile/ui/views/language_bar.dart';
-import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:graduation_work_mobile/res/app_colors.dart';
+import 'package:graduation_work_mobile/ui/pages/settings/settings_page.dart';
+import 'package:graduation_work_mobile/utils/location_utils.dart';
+import 'package:stream_transform/stream_transform.dart';
+
+const _locationDebounceDuration = Duration(milliseconds: 300);
+const _startZoom = 16.0;
+const _tabPadding = 12.0;
+const _tabIconSize = 36.0;
 
 class HomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  State<StatefulWidget> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
+  LatLng _lastUserLocation;
+
+  GoogleMapController _controller;
+
+  void _onUserLocationChanged(LatLng coordinates) {
+    _lastUserLocation = coordinates;
   }
 
-  void _onLogoutTap() async {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => RegisterPage()),
-      (_) => false,
+  void _onMapCreated(GoogleMapController receivedController) async {
+    _controller = receivedController;
+    getCurrentLocationStream().takeWhile((_) => mounted).take(1).listen(_moveCameraTo);
+    getCurrentLocationStream().takeWhile((_) => mounted).transform(debounce(_locationDebounceDuration)).listen(
+      (LatLng userLocation) {
+        _lastUserLocation = userLocation;
+        _onUserLocationChanged(_lastUserLocation);
+      },
     );
+  }
+
+  void _moveCameraTo(LatLng location, {double zoom = _startZoom}) {
+    if (location != null) {
+      _controller?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+        target: location,
+        zoom: zoom,
+      )));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            _buildLanguageBar(),
-            Expanded(
-              child: _buildQuestMetaList(),
-            ),
-          ],
-        ),
+      body: Stack(
+        fit: StackFit.expand,
+        alignment: Alignment.bottomCenter,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Expanded(
+                child: _buildMap(),
+              ),
+              _buildBottomButtons(),
+            ],
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildLanguageBar() {
+  Widget _buildMap() {
+    return GoogleMap(
+      onMapCreated: _onMapCreated,
+      zoomGesturesEnabled: true,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: false,
+      indoorViewEnabled: false,
+      tiltGesturesEnabled: false,
+      trafficEnabled: false,
+      rotateGesturesEnabled: true,
+      initialCameraPosition: CameraPosition(
+        target: _lastUserLocation ?? LatLng(0, 0),
+        zoom: _startZoom,
+      ),
+    );
+  }
+
+  Widget _buildBottomButtons() {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.grey,
-            blurRadius: 10,
-          )
+            blurRadius: 12,
+          ),
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          GestureDetector(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              child: Text(
-                Strings.of(context).logout,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ),
-            onTap: () => _onLogoutTap(),
-          ),
-          LanguageBar(),
+          _buildImageTab(AssetImage('res/ic_plants.png'), () {
+            //TODO
+          }),
+          _buildIconTab(Icons.assessment, () {
+            //TODO
+          }),
+          _buildIconTab(Icons.add_circle, () {
+            //TODO
+          }),
+          _buildIconTab(Icons.featured_play_list, () {
+            //TODO
+          }),
+          _buildIconTab(Icons.settings, () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => SettingsPage(),
+            ));
+          }),
         ],
       ),
     );
   }
 
-  Widget _buildQuestMetaList() {
-    return ScrollConfiguration(
-      behavior: NoGlowScrollBehavior(),
-      child: ListView(
-        padding: EdgeInsets.all(20),
-        children: [
-          RaisedButton(
-            child: Text('Test Page 1'),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => TestPage()));
-            },
-          )
-        ],
+  Widget _buildIconTab(IconData iconData, VoidCallback onTap) {
+    return IconButton(
+      padding: EdgeInsets.all(_tabPadding),
+      icon: Icon(iconData),
+      color: AppColors.of(context).green,
+      iconSize: _tabIconSize,
+      onPressed: onTap,
+    );
+  }
+
+  Widget _buildImageTab(ImageProvider imageProvider, VoidCallback onTap) {
+    return GestureDetector(
+      child: Container(
+        padding: EdgeInsets.all(_tabPadding),
+        child: Image(
+          image: imageProvider,
+          height: _tabIconSize,
+          width: _tabIconSize,
+        ),
       ),
+      onTap: onTap,
     );
   }
 }
