@@ -1,12 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
 import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
 import 'package:graduation_work_mobile/utils/extensions/permissions.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
+import 'package:logging/logging.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../../main.dart';
 
 const _splashDuration = Duration(seconds: 1);
 
@@ -40,7 +44,17 @@ class _SplashPageState extends State<SplashPage> {
     await storage.initializeLanguage();
     await storage.initializePath();
 
+    cameras = await availableCameras();
+    _setupLogging();
+
     _checkPermissions(_neededPermissions);
+  }
+
+  void _setupLogging() {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((LogRecord rec) {
+      print('${rec.level.name}: ${rec.time}: ${rec.message}');
+    });
   }
 
   void _checkPermissions(List<Permission> permissions, {int deepLevel = 0}) async {

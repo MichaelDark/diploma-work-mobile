@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/ui/pages/settings/settings_page.dart';
-import 'package:graduation_work_mobile/utils/location_utils.dart';
-import 'package:stream_transform/stream_transform.dart';
 
 const _locationDebounceDuration = Duration(milliseconds: 300);
 const _startZoom = 16.0;
