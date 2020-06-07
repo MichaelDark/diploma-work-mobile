@@ -1,11 +1,9 @@
 class SupportedLocale {
-  static const russian = SupportedLocale._('ru', 'RU');
   static const english = SupportedLocale._('en', 'GB');
   static const ukrainian = SupportedLocale._('uk', 'UA');
 
-  static const defaultLocale = russian;
+  static const defaultLocale = english;
   static const supportedLocales = [
-    russian,
     ukrainian,
     english,
   ];
@@ -17,7 +15,7 @@ class SupportedLocale {
 
   static SupportedLocale withLanguageCode(String code) => supportedLocales.firstWhere(
         (language) => language.languageCode == code,
-        orElse: () => russian,
+        orElse: () => defaultLocale,
       );
 
   String get localeCode => toString();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
-import 'package:graduation_work_mobile/ui/pages/settings/settings_page.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 
 const _locationDebounceDuration = Duration(milliseconds: 300);
 const _startZoom = 16.0;
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
           _buildImageTab(AssetImage('res/ic_plants.png'), () {
             //TODO
           }),
-          _buildIconTab(Icons.assessment, () {
+          _buildIconTab(Icons.format_list_bulleted, () {
             //TODO
           }),
           _buildIconTab(Icons.add_circle, () {
@@ -106,9 +106,7 @@ class _HomePageState extends State<HomePage> {
             //TODO
           }),
           _buildIconTab(Icons.settings, () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => SettingsPage(),
-            ));
+            context.pushSettings();
           }),
         ],
       ),

@@ -4,12 +4,12 @@ import 'package:flutter/services.dart';
 
 import 'api/api_client.dart';
 import 'res/app_colors.dart';
-import 'res/strings.dart';
-import 'ui/pages/forgot_password/forgot_password_page_bloc.dart';
+import 'ui/pages/auth/forgot_password/forgot_password_page_bloc.dart';
+import 'ui/pages/auth/login/login_page_bloc.dart';
+import 'ui/pages/auth/register/register_page_bloc.dart';
 import 'ui/pages/home/home_page_bloc.dart';
-import 'ui/pages/login/login_page_bloc.dart';
-import 'ui/pages/register/register_page_bloc.dart';
-import 'ui/pages/splash/splash_page.dart';
+import 'ui/pages/tools/splash_page.dart';
+import 'utils/extensions/context.dart';
 import 'utils/storage.dart';
 
 class App extends StatelessWidget {
@@ -47,7 +47,7 @@ class App extends StatelessWidget {
       builder: (context, snapshot) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: Strings.of(context).appName,
+          title: context.strings.appName,
           theme: ThemeData(
             primarySwatch: Colors.blue,
             accentColor: AppColors.of(context).themeUiColor,

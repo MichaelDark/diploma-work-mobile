@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/res/strings.dart';
 import 'package:graduation_work_mobile/res/strings/supported_locale.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
 
@@ -11,7 +12,7 @@ class LanguageBar extends StatelessWidget {
   const LanguageBar({this.onLanguageChanged});
 
   void _onNewLanguageSelected(BuildContext context, SupportedLocale locale) async {
-    if (Strings.of(context).locale != locale) {
+    if (context.strings.locale != locale) {
       await Storage().setLanguageCode(locale.languageCode);
       if (onLanguageChanged != null) {
         onLanguageChanged(locale);
@@ -26,7 +27,7 @@ class LanguageBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          _buildLanguageButton(SupportedLocale.russian),
+          _buildLanguageButton(SupportedLocale.english),
           _buildLanguageButton(SupportedLocale.ukrainian),
         ],
       ),
@@ -42,7 +43,7 @@ class LanguageBar extends StatelessWidget {
             child: Text(
               Strings.ofLanguageCode(locale.languageCode).languageShrug,
               style: TextStyle(
-                color: Strings.of(context).locale == locale
+                color: context.strings.locale == locale
                     ? AppColors.of(context).languageActive
                     : AppColors.of(context).languageInactive,
                 fontSize: 18,

@@ -4,7 +4,7 @@ import 'package:graduation_work_mobile/utils/storage.dart';
 import 'strings/supported_locale.dart';
 
 part 'strings/strings_provider.dart';
-part 'strings/strings_provider_ru.dart';
+part 'strings/strings_provider_en.dart';
 part 'strings/strings_provider_uk.dart';
 
 abstract class Strings {
@@ -21,9 +21,11 @@ abstract class Strings {
     return Localizations.localeOf(context, nullOk: true)?.languageCode;
   }
 
+  static StringsProvider ofLocale(SupportedLocale locale) => ofLanguageCode(locale.languageCode);
+
   static StringsProvider ofLanguageCode(String languageCode) {
     if (languageCode == SupportedLocale.ukrainian.languageCode) return UkStrings._();
-    if (languageCode == SupportedLocale.russian.languageCode) return RuStrings._();
-    return RuStrings._();
+    if (languageCode == SupportedLocale.english.languageCode) return EnStrings._();
+    return EnStrings._();
   }
 }

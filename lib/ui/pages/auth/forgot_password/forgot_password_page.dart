@@ -3,17 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
-import 'package:graduation_work_mobile/res/strings.dart';
-import 'package:graduation_work_mobile/ui/pages/forgot_password/forgot_password_page_bloc.dart';
-import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
 import 'package:graduation_work_mobile/ui/views/buttons/colored_button.dart';
 import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
 import 'package:graduation_work_mobile/ui/views/title_view.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/validator.dart';
 import 'package:graduation_work_mobile/utils/validators.dart';
+
+import 'forgot_password_page_bloc.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   @override
@@ -35,10 +35,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     super.initState();
     _bloc.forgotPasswordSubject.listen((dynamic state) async {
       if (mounted && state is SuccessState<String>) {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => RegisterPage()),
-          (_) => false,
-        );
+        context.pushFirstPage();
       }
     });
   }
@@ -98,7 +95,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Column(
       children: <Widget>[
         TitleView(
-          text: Strings.of(context).passwordRestore,
+          text: context.strings.passwordRestore,
           textAlign: TextAlign.center,
           fontSize: 24,
           margin: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
@@ -106,7 +103,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         Padding(
           padding: EdgeInsets.all(12),
           child: Text(
-            Strings.of(context).receiveYourNewPasswordByEmail,
+            context.strings.receiveYourNewPasswordByEmail,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -116,7 +113,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ),
         DefaultField(
           _fields[_ForgotPasswordField.Email],
-          labelText: Strings.of(context).email,
+          labelText: context.strings.email,
           onDone: _onRestoreTap,
         ),
         SizedBox(height: 16),
@@ -138,7 +135,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Padding(
       padding: EdgeInsets.all(12),
       child: ColoredButton(
-        text: Strings.of(context).receiveNewPassword,
+        text: context.strings.receiveNewPassword,
         onPressed: (_) => _onRestoreTap(),
       ),
     );

@@ -1,10 +1,13 @@
 part of '../strings.dart';
 
-class UkStrings implements StringsProvider {
+class UkStrings extends StringsProvider {
   UkStrings._();
 
   @override
   SupportedLocale get locale => SupportedLocale.ukrainian;
+
+  @override
+  String get languageName => 'Украінська';
 
   @override
   String get languageShrug => 'УКР';
@@ -81,5 +84,6 @@ class UkStrings implements StringsProvider {
   @override
   String get tryAgain => 'Спробувати ще';
 
+  @override
   String get settings => 'Настройки';
 }

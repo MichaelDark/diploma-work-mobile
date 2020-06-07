@@ -3,6 +3,8 @@ part of '../strings.dart';
 abstract class StringsProvider {
   SupportedLocale get locale;
 
+  String get languageName;
+
   String get languageShrug;
 
   String get appName;
@@ -54,4 +56,10 @@ abstract class StringsProvider {
   String get tryAgain;
 
   String get settings => 'Настройки';
+
+  String get chooseYourLanguage => 'Choose your language';
+
+  String get permissionsReason => 'Give an app needed permissions because...';
+
+  String get giveNeededPermissions => 'Give needed permissions to the app';
 }

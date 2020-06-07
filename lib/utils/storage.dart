@@ -22,6 +22,7 @@ class Storage {
   static const KEY_CURRENT_TASK_POSITION = 'KEY_CURRENT_TASK_POSITION';
 
   static const KEY_USER_EMAIL = 'KEY_USER_EMAIL';
+  static const KEY_IS_MODERATOR = 'KEY_IS_MODERATOR';
 
   static const _IMAGES_DIRECTORY_NAME = 'images';
 
@@ -86,6 +87,17 @@ class Storage {
   Future<void> setUserEmail(String email) => _doOnPrefs((prefs) => prefs.setString(KEY_USER_EMAIL, email));
 
   Future<String> getUserEmail() => _doOnPrefs((prefs) => prefs.getString(KEY_USER_EMAIL));
+
+  final _isModeratorSubject = BehaviorSubject<bool>.seeded(false);
+
+  bool get isModerator => _isModeratorSubject.value;
+
+  Future<void> setIsModerator(bool value) => _doOnPrefs((prefs) {
+    _isModeratorSubject.add(value);
+    return prefs.setBool(KEY_IS_MODERATOR, value);
+  });
+
+  Future<bool> getIsModerator() => _doOnPrefs((prefs) => prefs.getBool(KEY_IS_MODERATOR));
 
 //  static const USER_CREDENTIALS_CODE = 'USER_CREDENTIALS_CODE';
 //  static const TOKEN = 'TOKEN';

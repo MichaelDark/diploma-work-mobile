@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
-import 'package:graduation_work_mobile/res/strings.dart';
-import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
 import 'package:graduation_work_mobile/ui/views/language_bar.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -27,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Container(
                   margin: EdgeInsets.all(16),
                   child: Text(
-                    Strings.of(context).settings,
+                    context.strings.settings,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -45,13 +44,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: <Widget>[
                     LanguageBar(),
                     ListTile(
-                      title: Text(Strings.of(context).logout),
+                      title: Text(context.strings.logout),
                       onTap: () async {
                         await Storage().setUserEmail(null);
-                        Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (_) => RegisterPage()),
-                          (_) => false,
-                        );
+                        context.pushLogOut();
                       },
                     )
                   ],

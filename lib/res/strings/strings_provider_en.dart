@@ -1,13 +1,16 @@
 part of '../strings.dart';
 
-class RuStrings implements StringsProvider {
-  RuStrings._();
+class EnStrings extends StringsProvider {
+  EnStrings._();
 
   @override
-  SupportedLocale get locale => SupportedLocale.russian;
+  SupportedLocale get locale => SupportedLocale.english;
 
   @override
-  String get languageShrug => 'РУС';
+  String get languageName => 'English';
+
+  @override
+  String get languageShrug => 'ENG';
 
   @override
   String get appName => 'Graduation Work';

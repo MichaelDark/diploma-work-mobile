@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/api/model/forgot_password_request.dart';
 import 'package:graduation_work_mobile/api/model/login_request.dart';
 import 'package:graduation_work_mobile/api/model/request_error.dart';
-import 'package:graduation_work_mobile/res/strings.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 
 import 'api_service.dart';
 import 'api_strings.dart';
@@ -79,7 +79,7 @@ class ApiClient {
       if (exception is SocketException) {
         return Future.error(RequestError(
           -1,
-          Strings.of(context).textNoInternet,
+          context.strings.textNoInternet,
           exception,
         ));
       } else {

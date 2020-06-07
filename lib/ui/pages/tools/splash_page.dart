@@ -1,14 +1,10 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
-import 'package:graduation_work_mobile/ui/pages/register/register_page.dart';
-import 'package:graduation_work_mobile/utils/extensions/permissions.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:logging/logging.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../main.dart';
 
@@ -20,16 +16,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  static const List<Permission> _neededPermissions = [
-//    PermissionGroup.photos,
-//    PermissionGroup.mediaLibrary,
-    Permission.camera,
-    Permission.storage,
-    Permission.speech,
-    Permission.location,
-    Permission.microphone,
-  ];
-
   Timer _timer;
 
   @override
@@ -46,8 +32,7 @@ class _SplashPageState extends State<SplashPage> {
 
     cameras = await availableCameras();
     _setupLogging();
-
-    _checkPermissions(_neededPermissions);
+    _startTimer();
   }
 
   void _setupLogging() {
@@ -57,37 +42,10 @@ class _SplashPageState extends State<SplashPage> {
     });
   }
 
-  void _checkPermissions(List<Permission> permissions, {int deepLevel = 0}) async {
-    final initialPermissionsResult = await permissions.request();
-    final isNotGranted = hasNotGrantedPermissions(initialPermissionsResult);
-
-    if (deepLevel >= 3) {
-      exit(0);
-    } else if (isNotGranted) {
-      _checkPermissions(permissions, deepLevel: ++deepLevel);
-    } else {
-      _startTimer();
-    }
-  }
-
   void _startTimer() {
-    _timer = Timer(
-      _splashDuration,
-      () async {
-        if (mounted) {
-          final String userEmail = await Storage().getUserEmail();
-          if (userEmail == null || userEmail.trim().isEmpty) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => RegisterPage()),
-            );
-          } else {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => HomePage()),
-            );
-          }
-        }
-      },
-    );
+    _timer = Timer(_splashDuration, () {
+      if (mounted) context.pushFirstPage();
+    });
   }
 
   @override

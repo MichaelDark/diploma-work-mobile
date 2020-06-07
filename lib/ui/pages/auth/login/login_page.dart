@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
-import 'package:graduation_work_mobile/res/strings.dart';
-import 'package:graduation_work_mobile/ui/pages/forgot_password/forgot_password_page.dart';
 import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
-import 'package:graduation_work_mobile/ui/pages/login/login_page_bloc.dart';
 import 'package:graduation_work_mobile/ui/views/buttons/colored_button.dart';
 import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
-import 'package:graduation_work_mobile/ui/views/title_view.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:graduation_work_mobile/utils/validator.dart';
 import 'package:graduation_work_mobile/utils/validators.dart';
+
+import 'login_page_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -82,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
   void _onForgotPasswordTap() {
     if (mounted) {
       FocusScope.of(context).requestFocus(FocusNode());
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
+      context.pushForgotPassword();
     }
   }
 
@@ -103,12 +102,22 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildBackButton() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         IconButton(
-          onPressed: () => Navigator.pop(context),
-          padding: EdgeInsets.all(16),
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        Container(
+          margin: EdgeInsets.all(16),
+          child: Text(
+            context.strings.signIn,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 28,
+              color: AppColors.of(context).black,
+            ),
+          ),
         ),
       ],
     );
@@ -117,16 +126,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildBodyColumn() {
     return Column(
       children: <Widget>[
-        TitleView(
-          text: Strings.of(context).signIn,
-          textAlign: TextAlign.center,
-          fontSize: 24,
-          margin: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-        ),
         Padding(
           padding: EdgeInsets.all(12),
           child: Text(
-            Strings.of(context).logInWithExistingAccount,
+            context.strings.logInWithExistingAccount,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -136,12 +139,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
         DefaultField(
           _fields[_LoginField.Email],
-          labelText: Strings.of(context).email,
+          labelText: context.strings.email,
           nextFocus: _fields[_LoginField.Password].node,
         ),
         DefaultField(
           _fields[_LoginField.Password],
-          labelText: Strings.of(context).password,
+          labelText: context.strings.password,
           obscuredText: true,
           onDone: _onLoginTap,
         ),
@@ -169,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
     return Padding(
       padding: EdgeInsets.all(12),
       child: ColoredButton(
-        text: Strings.of(context).signIn,
+        text: context.strings.signIn,
         onPressed: (_) => _onLoginTap(),
       ),
     );
@@ -181,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Padding(
         padding: EdgeInsets.all(18),
         child: Text(
-          Strings.of(context).iForgotPassword,
+          context.strings.iForgotPassword,
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.w500,

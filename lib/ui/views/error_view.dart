@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
-import 'package:graduation_work_mobile/res/strings.dart';
+import 'package:graduation_work_mobile/utils/extensions/context.dart';
 
 import 'buttons/outlined_small_button.dart';
 
@@ -21,9 +21,9 @@ class ErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     String message;
     if (error is SocketException) {
-      message = Strings.of(context).textNoInternet;
+      message = context.strings.textNoInternet;
     } else {
-      message = Strings.of(context).error;
+      message = context.strings.error;
     }
     return Center(
       child: Container(
@@ -55,7 +55,7 @@ class ErrorView extends StatelessWidget {
               ),
             ),
             OutlinedSmallButton(
-              text: Strings.of(context).tryAgainWithExclamation,
+              text: context.strings.tryAgainWithExclamation,
               onPressed: (BuildContext context) {
                 onReload();
               },
