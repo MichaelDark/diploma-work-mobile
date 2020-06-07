@@ -16,14 +16,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  static const List<PermissionGroup> _neededPermissions = [
+  static const List<Permission> _neededPermissions = [
 //    PermissionGroup.photos,
 //    PermissionGroup.mediaLibrary,
-    PermissionGroup.camera,
-    PermissionGroup.storage,
-    PermissionGroup.speech,
-    PermissionGroup.location,
-    PermissionGroup.microphone,
+    Permission.camera,
+    Permission.storage,
+    Permission.speech,
+    Permission.location,
+    Permission.microphone,
   ];
 
   Timer _timer;
@@ -43,8 +43,8 @@ class _SplashPageState extends State<SplashPage> {
     _checkPermissions(_neededPermissions);
   }
 
-  void _checkPermissions(List<PermissionGroup> permissions, {int deepLevel = 0}) async {
-    final initialPermissionsResult = await PermissionHandler().requestPermissions(permissions);
+  void _checkPermissions(List<Permission> permissions, {int deepLevel = 0}) async {
+    final initialPermissionsResult = await permissions.request();
     final isNotGranted = hasNotGrantedPermissions(initialPermissionsResult);
 
     if (deepLevel >= 3) {

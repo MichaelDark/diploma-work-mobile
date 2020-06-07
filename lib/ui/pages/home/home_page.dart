@@ -26,13 +26,13 @@ class _HomePageState extends State<HomePage> {
 
   void _onMapCreated(GoogleMapController receivedController) async {
     _controller = receivedController;
-    getCurrentLocationStream().takeWhile((_) => mounted).take(1).listen(_moveCameraTo);
-    getCurrentLocationStream().takeWhile((_) => mounted).transform(debounce(_locationDebounceDuration)).listen(
-      (LatLng userLocation) {
-        _lastUserLocation = userLocation;
-        _onUserLocationChanged(_lastUserLocation);
-      },
-    );
+//    getCurrentLocationStream().takeWhile((_) => mounted).take(1).listen(_moveCameraTo);
+//    getCurrentLocationStream().takeWhile((_) => mounted).transform(debounce(_locationDebounceDuration)).listen(
+//      (LatLng userLocation) {
+//        _lastUserLocation = userLocation;
+//        _onUserLocationChanged(_lastUserLocation);
+//      },
+//    );
   }
 
   void _moveCameraTo(LatLng location, {double zoom = _startZoom}) {
