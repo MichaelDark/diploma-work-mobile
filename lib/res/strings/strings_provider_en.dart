@@ -1,88 +1,81 @@
 part of '../strings.dart';
 
-class EnStrings extends StringsProvider {
-  EnStrings._();
-
-  @override
+class DefaultStrings {
   SupportedLocale get locale => SupportedLocale.english;
 
-  @override
   String get languageName => 'English';
 
-  @override
   String get languageShrug => 'ENG';
 
-  @override
   String get appName => 'Graduation Work';
 
-  @override
-  String get textNoInternet => 'Нет интернета';
+  String get textNoInternet => 'No internet';
 
-  @override
-  String get error => "Ошибка";
+  String get error => "Oops... Error occurred!";
 
-  @override
-  String get tryAgainWithExclamation => "Попробовать еще!";
+  String get tryAgainWithExclamation => "Try again!";
 
-  @override
-  String get register => 'Зарегистрироваться!';
+  String get register => 'Sign Up!';
 
-  @override
-  String get email => 'Электронная почта';
+  String get email => 'E-mail';
 
-  @override
-  String get name => 'Имя';
+  String get name => 'Name';
 
-  @override
-  String get password => 'Пароль';
+  String get password => 'Password';
 
-  @override
-  String get registration => 'Регистрация';
+  String get registration => 'Sign Up';
 
-  @override
-  String get registerNewAccount => 'Зарегистрируйте новый аккаунт!';
+  String get registerNewAccount => 'Create account!';
 
-  @override
-  String get alreadyHaveAccount => 'Уже есть аккаунт';
+  String get alreadyHaveAccount => 'Already have account';
 
-  @override
-  String get iForgotPassword => 'Я забыл пароль';
+  String get iForgotPassword => 'I forgot password';
 
-  @override
-  String get logInWithExistingAccount => 'Войти с помощью существующего аккаунта';
+  String get logInWithExistingAccount => 'Sign in with existing account';
 
-  @override
-  String get signIn => 'Вход';
+  String get signIn => 'Sign In';
 
-  @override
-  String get logout => 'Выйти';
+  String get logout => 'Log Out';
 
-  @override
-  String get fieldIsRequired => 'Поле обязательно для ввода';
+  String get fieldIsRequired => 'Field is required';
 
-  @override
-  String get invalidEmail => 'Неверный формат электронной почты';
+  String get invalidEmail => 'Invalid e-mail format';
 
-  @override
-  String get passwordShouldContain => 'Пароль должен быть минимум из 8 символов';
+  String get passwordShouldContain => 'Password should be at least 8-symbol length';
 
-  @override
-  String get receiveNewPassword => 'Получить пароль';
+  String get receiveNewPassword => 'Receive new password';
 
-  @override
-  String get receiveYourNewPasswordByEmail => 'Получите ваш новый пароль по указанному адресу электронной почты';
+  String get receiveYourNewPasswordByEmail => 'Receive your new password by e-mail';
 
-  @override
-  String get passwordRestore => 'Восстановление пароля';
+  String get passwordRestore => 'Password recovery';
 
-  @override
-  String get back => 'Назад';
+  String get back => 'Back';
 
-  @override
-  String get takePhoto => 'Сделать снимок!';
+  String get takePhoto => 'Take pic!';
 
-  @override
-  String get tryAgain => 'Попробовать снова';
+  String get tryAgain => 'Try again';
 
-  String get settings => 'Настройки';
+  String get settings => 'Settings';
+
+  String get chooseYourLanguage => 'Choose your language';
+
+  String get permissionsReason => 'Give an app needed permissions because...';
+
+  String get giveNeededPermissions => 'Give needed permissions to the app';
+
+  String get plantsNearby => 'Plants nearby';
+
+  String get tapToGetInfo => 'Tap to get info';
+
+  String get plantArea => 'Plant area';
+
+  String get singlePlant => 'Single plant';
+
+  String get plantRequests => 'Plant requests';
+
+  String get createdBy => 'Created by';
+
+  String get approvedBy => 'Approved by';
+
+  String get specimen => 'Specimen';
 }

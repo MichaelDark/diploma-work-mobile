@@ -38,7 +38,7 @@ class _LanguagePageState extends State<LanguagePage> {
                       context.strings.chooseYourLanguage,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 20,
                         color: AppColors.of(context).black,
                       ),
                     ),

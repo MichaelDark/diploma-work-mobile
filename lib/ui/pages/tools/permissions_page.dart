@@ -41,7 +41,7 @@ class _PermissionsPageState extends State<PermissionsPage> {
                       context.strings.giveNeededPermissions,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 20,
                         color: AppColors.of(context).black,
                       ),
                     ),

@@ -1,7 +1,7 @@
 part of '../strings.dart';
 
-class UkStrings extends StringsProvider {
-  UkStrings._();
+class UkStrings extends DefaultStrings {
+  UkStrings();
 
   @override
   SupportedLocale get locale => SupportedLocale.ukrainian;

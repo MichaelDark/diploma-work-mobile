@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
-import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
 import 'package:graduation_work_mobile/ui/views/buttons/colored_button.dart';
 import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
@@ -38,10 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     _bloc.loginSubject.listen((dynamic state) async {
       if (mounted && state is SuccessState<String>) {
         await Storage().setUserEmail(state.data);
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => HomePage()),
-          (_) => false,
-        );
+        context.pushFirstPage();
       }
     });
   }
@@ -114,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 20,
               color: AppColors.of(context).black,
             ),
           ),

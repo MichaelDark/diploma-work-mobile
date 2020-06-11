@@ -30,7 +30,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 28,
+                      fontSize: 20,
                       color: AppColors.of(context).black,
                     ),
                   ),

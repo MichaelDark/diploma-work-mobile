@@ -1,12 +1,27 @@
 import 'package:jaguar_serializer/jaguar_serializer.dart';
 
-import 'home_item.dart';
+import 'plant_node.dart';
+import 'plant_request.dart';
+import 'plant_request_node.dart';
+import 'user_info.dart';
 
 part 'json_serializers.jser.dart';
 
 final modelSerializerRepo = SerializerRepoImpl(serializers: [
-  HomeItemJsonSerializer(),
+  PlantNodeJsonSerializer(),
+  PlantRequestNodeJsonSerializer(),
+  UserInfoJsonSerializer(),
+  PlantRequestJsonSerializer(),
 ]);
 
 @GenSerializer()
-class HomeItemJsonSerializer extends Serializer<HomeItem> with _$HomeItemJsonSerializer {}
+class PlantNodeJsonSerializer extends Serializer<PlantNode> with _$PlantNodeJsonSerializer {}
+
+@GenSerializer()
+class PlantRequestNodeJsonSerializer extends Serializer<PlantRequestNode> with _$PlantRequestNodeJsonSerializer {}
+
+@GenSerializer()
+class UserInfoJsonSerializer extends Serializer<UserInfo> with _$UserInfoJsonSerializer {}
+
+@GenSerializer()
+class PlantRequestJsonSerializer extends Serializer<PlantRequest> with _$PlantRequestJsonSerializer {}

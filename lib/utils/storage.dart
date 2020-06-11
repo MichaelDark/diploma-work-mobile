@@ -93,9 +93,9 @@ class Storage {
   bool get isModerator => _isModeratorSubject.value;
 
   Future<void> setIsModerator(bool value) => _doOnPrefs((prefs) {
-    _isModeratorSubject.add(value);
-    return prefs.setBool(KEY_IS_MODERATOR, value);
-  });
+        _isModeratorSubject.add(value);
+        return prefs.setBool(KEY_IS_MODERATOR, value);
+      });
 
   Future<bool> getIsModerator() => _doOnPrefs((prefs) => prefs.getBool(KEY_IS_MODERATOR));
 

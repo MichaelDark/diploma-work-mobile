@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
+import 'package:graduation_work_mobile/utils/location_utils.dart';
+import 'package:stream_transform/stream_transform.dart';
 
 const _locationDebounceDuration = Duration(milliseconds: 300);
 const _startZoom = 16.0;
@@ -24,13 +26,13 @@ class _HomePageState extends State<HomePage> {
 
   void _onMapCreated(GoogleMapController receivedController) async {
     _controller = receivedController;
-//    getCurrentLocationStream().takeWhile((_) => mounted).take(1).listen(_moveCameraTo);
-//    getCurrentLocationStream().takeWhile((_) => mounted).transform(debounce(_locationDebounceDuration)).listen(
-//      (LatLng userLocation) {
-//        _lastUserLocation = userLocation;
-//        _onUserLocationChanged(_lastUserLocation);
-//      },
-//    );
+    getCurrentLocationStream().takeWhile((_) => mounted).take(1).listen(_moveCameraTo);
+    getCurrentLocationStream().takeWhile((_) => mounted).debounce(_locationDebounceDuration).listen(
+      (LatLng userLocation) {
+        _lastUserLocation = userLocation;
+        _onUserLocationChanged(_lastUserLocation);
+      },
+    );
   }
 
   void _moveCameraTo(LatLng location, {double zoom = _startZoom}) {
@@ -67,11 +69,12 @@ class _HomePageState extends State<HomePage> {
       onMapCreated: _onMapCreated,
       zoomGesturesEnabled: true,
       myLocationEnabled: true,
-      myLocationButtonEnabled: false,
+      myLocationButtonEnabled: true,
       indoorViewEnabled: false,
       tiltGesturesEnabled: false,
       trafficEnabled: false,
       rotateGesturesEnabled: true,
+      padding: EdgeInsets.only(top: 42),
       initialCameraPosition: CameraPosition(
         target: _lastUserLocation ?? LatLng(0, 0),
         zoom: _startZoom,
@@ -94,16 +97,13 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildImageTab(AssetImage('res/ic_plants.png'), () {
-            //TODO
-          }),
-          _buildIconTab(Icons.format_list_bulleted, () {
-            //TODO
+            context.pushPlantList(_lastUserLocation);
           }),
           _buildIconTab(Icons.add_circle, () {
             //TODO
           }),
           _buildIconTab(Icons.featured_play_list, () {
-            //TODO
+            context.pushPlantRequestList();
           }),
           _buildIconTab(Icons.settings, () {
             context.pushSettings();
