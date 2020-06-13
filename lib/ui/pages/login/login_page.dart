@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              fontFamily: 'Montserrat',
+              fontFamily: 'Ubuntu',
             ),
           ),
         ),
@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           Strings.of(context).iForgotPassword,
           style: TextStyle(
-            fontFamily: 'Montserrat',
+            fontFamily: 'Ubuntu',
             fontWeight: FontWeight.w500,
             color: AppColors.of(context).themeUiColor,
           ),

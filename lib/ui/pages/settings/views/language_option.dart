@@ -5,10 +5,10 @@ import 'package:graduation_work_mobile/res/strings/supported_locale.dart';
 import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 import 'package:graduation_work_mobile/utils/storage.dart';
 
-class LanguageBar extends StatelessWidget {
+class LanguageOption extends StatelessWidget {
   final SingleCallback<SupportedLocale> onLanguageChanged;
 
-  const LanguageBar({this.onLanguageChanged});
+  const LanguageOption({this.onLanguageChanged});
 
   void _onNewLanguageSelected(BuildContext context, SupportedLocale locale) async {
     if (Strings.of(context).locale != locale) {
@@ -24,10 +24,29 @@ class LanguageBar extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          _buildLanguageButton(SupportedLocale.russian),
-          _buildLanguageButton(SupportedLocale.ukrainian),
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: Text(
+              Strings.of(context).language + ':',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: AppColors.of(context).black,
+                fontSize: 18,
+                fontFamily: 'Ubuntu',
+              ),
+            ),
+          ),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                _buildLanguageButton(SupportedLocale.russian),
+                _buildLanguageButton(SupportedLocale.ukrainian),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -47,7 +66,7 @@ class LanguageBar extends StatelessWidget {
                     : AppColors.of(context).languageInactive,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
-                fontFamily: 'Montserrat',
+                fontFamily: 'Ubuntu',
               ),
             ),
           ),

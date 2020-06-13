@@ -81,5 +81,9 @@ class UkStrings implements StringsProvider {
   @override
   String get tryAgain => 'Спробувати ще';
 
+  @override
   String get settings => 'Настройки';
+
+  @override
+  String get language => 'Язык';
 }

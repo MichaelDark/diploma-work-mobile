@@ -54,4 +54,6 @@ abstract class StringsProvider {
   String get tryAgain;
 
   String get settings => 'Настройки';
+
+  String get language;
 }

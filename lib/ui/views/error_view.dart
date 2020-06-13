@@ -49,7 +49,7 @@ class ErrorView extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Ubuntu',
                   color: AppColors.of(context).errorColor,
                 ),
               ),

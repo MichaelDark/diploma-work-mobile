@@ -81,5 +81,9 @@ class RuStrings implements StringsProvider {
   @override
   String get tryAgain => 'Попробовать снова';
 
+  @override
   String get settings => 'Настройки';
+
+  @override
+  String get language => 'Язык';
 }

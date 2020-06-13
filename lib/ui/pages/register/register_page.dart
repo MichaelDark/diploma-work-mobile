@@ -115,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Ubuntu',
                 ),
               ),
             ),
@@ -175,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Text(
           Strings.of(context).alreadyHaveAccount,
           style: TextStyle(
-            fontFamily: 'Montserrat',
+            fontFamily: 'Ubuntu',
             fontWeight: FontWeight.w500,
             color: AppColors.of(context).themeUiColor,
           ),

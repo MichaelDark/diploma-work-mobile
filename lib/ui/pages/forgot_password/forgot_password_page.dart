@@ -110,7 +110,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-              fontFamily: 'Montserrat',
+              fontFamily: 'Ubuntu',
             ),
           ),
         ),

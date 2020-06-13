@@ -53,7 +53,7 @@ class App extends StatelessWidget {
             accentColor: AppColors.of(context).themeUiColor,
             scaffoldBackgroundColor: Colors.white,
             textTheme: textTheme.apply(
-              fontFamily: 'Montserrat',
+              fontFamily: 'Ubuntu',
             ),
           ),
           home: SplashPage(),
