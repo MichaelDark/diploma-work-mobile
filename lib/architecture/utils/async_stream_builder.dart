@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_work_mobile/api/model/request_error.dart';
+import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 
 import 'states.dart';
@@ -40,12 +41,18 @@ class AsyncStreamBuilder<T> extends StatelessWidget {
     return loadingBuilder != null ? loadingBuilder(context) : _buildLoading();
   }
 
-  Widget _buildSuccessState(BuildContext context, SuccessState<T> successState) {
-    return successBuilder != null ? successBuilder(context, successState.data) : _buildInitialState(context);
+  Widget _buildSuccessState(
+      BuildContext context, SuccessState<T> successState) {
+    return successBuilder != null
+        ? successBuilder(context, successState.data)
+        : _buildInitialState(context);
   }
 
-  Widget _buildFailureState(BuildContext context, FailureState<T> failureState) {
-    return failureBuilder != null ? failureBuilder(context, failureState.failure) : _buildError(failureState.failure);
+  Widget _buildFailureState(
+      BuildContext context, FailureState<T> failureState) {
+    return failureBuilder != null
+        ? failureBuilder(context, failureState.failure)
+        : _buildError(failureState.failure);
   }
 
   Widget _buildInitialState(BuildContext context) {
@@ -69,15 +76,10 @@ class AsyncStreamBuilder<T> extends StatelessWidget {
       errorText = '$errorObject';
     }
 
-    return Column(
-      children: <Widget>[
-        Text('$errorText'),
-        if (onReload != null)
-          FlatButton(
-            child: Text('Reload'),
-            onPressed: onReload,
-          )
-      ],
+    return ErrorView(
+      errorObject,
+      onReload: onReload,
+      margin: EdgeInsets.all(24),
     );
   }
 }

@@ -26,41 +26,43 @@ class ErrorView extends StatelessWidget {
       message = context.strings.error;
     }
     return Center(
-      child: Container(
-        margin: margin,
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.of(context).errorColor.withOpacity(0.3),
-              blurRadius: 10,
-              spreadRadius: 5,
-            ),
-          ],
-        ),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(12),
-              child: Text(
-                '$message',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Montserrat',
-                  color: AppColors.of(context).errorColor,
+      child: IntrinsicHeight(
+        child: Container(
+          margin: margin,
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.of(context).errorColor.withOpacity(0.3),
+                blurRadius: 10,
+                spreadRadius: 5,
+              ),
+            ],
+          ),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(12),
+                child: Text(
+                  '$message',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Montserrat',
+                    color: AppColors.of(context).errorColor,
+                  ),
                 ),
               ),
-            ),
-            OutlinedSmallButton(
-              text: context.strings.tryAgainWithExclamation,
-              onPressed: (BuildContext context) {
-                onReload();
-              },
-            ),
-          ],
+              OutlinedSmallButton(
+                text: context.strings.tryAgainWithExclamation,
+                onPressed: (BuildContext context) {
+                  onReload();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
