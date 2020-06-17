@@ -58,7 +58,7 @@ class ErrorView extends StatelessWidget {
               OutlinedSmallButton(
                 text: context.strings.tryAgainWithExclamation,
                 onPressed: (BuildContext context) {
-                  onReload();
+                  onReload?.call();
                 },
               ),
             ],

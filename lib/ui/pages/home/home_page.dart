@@ -1,14 +1,27 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:graduation_work_mobile/api/api_client.dart';
+import 'package:graduation_work_mobile/architecture/utils/states.dart';
+import 'package:graduation_work_mobile/models/plant_node.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
+import 'package:graduation_work_mobile/ui/views/plant_map.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/location_utils.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 const _locationDebounceDuration = Duration(milliseconds: 300);
-const _startZoom = 16.0;
 const _tabPadding = 12.0;
 const _tabIconSize = 36.0;
+
+Stream<AsyncState<List<PlantNode>>> getPlantNodesStream(LatLng location) async* {
+  yield LoadingState(true);
+  try {
+    yield SuccessState(await BlocProvider.getDependency<ApiClient>().getPlantNodes(location));
+  } catch (e) {
+    yield FailureState(e);
+  }
+}
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,31 +30,35 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   LatLng _lastUserLocation;
+  List<PlantNode> _nodes;
 
-  GoogleMapController _controller;
-
-  void _onUserLocationChanged(LatLng coordinates) {
-    _lastUserLocation = coordinates;
-  }
-
-  void _onMapCreated(GoogleMapController receivedController) async {
-    _controller = receivedController;
-    getCurrentLocationStream().takeWhile((_) => mounted).take(1).listen(_moveCameraTo);
-    getCurrentLocationStream().takeWhile((_) => mounted).debounce(_locationDebounceDuration).listen(
+  void _onMapCreated() async {
+    getCurrentLocationStream().debounce(_locationDebounceDuration).listen(
       (LatLng userLocation) {
-        _lastUserLocation = userLocation;
-        _onUserLocationChanged(_lastUserLocation);
+        if (mounted && userLocation != null) {
+          _onUserLocationChanged(userLocation);
+        }
       },
     );
   }
 
-  void _moveCameraTo(LatLng location, {double zoom = _startZoom}) {
-    if (location != null) {
-      _controller?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-        target: location,
-        zoom: zoom,
-      )));
+  void _onUserLocationChanged(LatLng coordinates) {
+    if (coordinates != null) {
+      if (coordinates != _lastUserLocation) {
+        getPlantNodesStream(coordinates).listen((AsyncState<List<PlantNode>> state) {
+          if (mounted && state is SuccessState<List<PlantNode>> && _nodes != state.data) {
+            setState(() => _nodes = state.data);
+          }
+        });
+      }
+      setState(() {
+        _lastUserLocation = coordinates;
+      });
     }
+  }
+
+  void _onMarkerTap(PlantNode node) {
+    context.pushPlantNode(node);
   }
 
   @override
@@ -65,20 +82,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMap() {
-    return GoogleMap(
+    return PlantMap(
+      selectedPosition: _lastUserLocation,
+      nodes: _nodes,
       onMapCreated: _onMapCreated,
-      zoomGesturesEnabled: true,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: true,
-      indoorViewEnabled: false,
-      tiltGesturesEnabled: false,
-      trafficEnabled: false,
-      rotateGesturesEnabled: true,
-      padding: EdgeInsets.only(top: 42),
-      initialCameraPosition: CameraPosition(
-        target: _lastUserLocation ?? LatLng(0, 0),
-        zoom: _startZoom,
-      ),
+      onMarkerTap: _onMarkerTap,
     );
   }
 

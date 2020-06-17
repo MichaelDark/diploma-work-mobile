@@ -60,6 +60,7 @@ class _PlantListPageState extends State<PlantListPage> {
                 behavior: NoGlowScrollBehavior(),
                 child: AsyncStreamBuilder<List<PlantNode>>(
                   getPlantNodesStream(widget.location),
+                  onReload: () => setState(() {}),
                   successBuilder: (context, nodes) {
                     return ListView.builder(
                       padding: EdgeInsets.all(4),
@@ -85,7 +86,7 @@ class _PlantListPageState extends State<PlantListPage> {
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.4),
@@ -104,7 +105,7 @@ class _PlantListPageState extends State<PlantListPage> {
                     child: Container(
                       alignment: Alignment.topCenter,
                       padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                       child: Column(
                         children: <Widget>[
                           Padding(
@@ -112,7 +113,7 @@ class _PlantListPageState extends State<PlantListPage> {
                             child: AspectRatio(
                               aspectRatio: 1,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(8),
                                 child: CachedNetworkImage(
                                   imageUrl: node.imageUrl,
                                   fit: BoxFit.cover,
@@ -131,7 +132,7 @@ class _PlantListPageState extends State<PlantListPage> {
                               child: AspectRatio(
                                 aspectRatio: 1,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: CachedNetworkImage(
                                     imageUrl: node.childNodes.first.imageUrl,
                                     fit: BoxFit.cover,

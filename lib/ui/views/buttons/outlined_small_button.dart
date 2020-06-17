@@ -16,13 +16,13 @@ class OutlinedSmallButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlineButton(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(8),
       ),
       borderSide: BorderSide(
         color: AppColors.of(context).themeUiColor,
       ),
       textColor: AppColors.of(context).themeUiColor,
-      onPressed: () => onPressed(context),
+      onPressed: () => onPressed?.call(context),
       child: Text(
         text,
         style: TextStyle(

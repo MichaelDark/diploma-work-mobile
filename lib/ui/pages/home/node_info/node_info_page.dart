@@ -1,12 +1,14 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/api/api_client.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
 import 'package:graduation_work_mobile/models/plant_node.dart';
 import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
+import 'package:graduation_work_mobile/ui/views/plant_map.dart';
 import 'package:graduation_work_mobile/ui/views/widget_visibility.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
 
@@ -63,6 +65,7 @@ class _NodeInfoPageState extends State<NodeInfoPage> {
                 behavior: NoGlowScrollBehavior(),
                 child: AsyncStreamBuilder<PlantNode>(
                   getPlantRequestNodesStream(widget.id, widget.isArea),
+                  onReload: () => setState(() {}),
                   successBuilder: (context, node) {
                     return PlantNodeView(node);
                   },
@@ -179,6 +182,15 @@ class _PlantNodeViewState extends State<PlantNodeView> {
                     ), //t
                   if (_node.isArea) // itle
                     ..._specimens.map((PlantNode specimen) => _buildSpecimen(specimen)).toList(),
+                  SizedBox(height: 16),
+                  SizedBox(
+                    height: 200,
+                    child: PlantMap(
+                      selectedPosition: LatLng(_node.latitude, _node.longitude),
+                      nodes: [_node],
+                      onMarkerTap: (_) {},
+                    ),
+                  )
                 ],
               ),
             ),
@@ -204,14 +216,17 @@ class _PlantNodeViewState extends State<PlantNodeView> {
         ),
         Expanded(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(8),
             child: CachedNetworkImage(
               imageUrl: _images[_currentImageIndex],
               fit: BoxFit.cover,
               filterQuality: FilterQuality.high,
               height: 256,
-              placeholder: (context, url) => Padding(
+              width: 256,
+              placeholder: (context, url) => Container(
                 padding: EdgeInsets.all(8.0),
+                height: 256,
+                width: 256,
                 child: CircularProgressIndicator(),
               ),
               errorWidget: (context, url, error) => Icon(Icons.error),
