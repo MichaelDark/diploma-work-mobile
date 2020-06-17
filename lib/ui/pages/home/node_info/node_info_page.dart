@@ -280,9 +280,19 @@ class _PlantNodeViewState extends State<PlantNodeView> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Text(
-                      '${specimen.latitude.toStringAsFixed(4)}, ${specimen.longitude.toStringAsFixed(4)}',
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '${specimen.title}',
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          '${specimen.latitude.toStringAsFixed(4)}, ${specimen.longitude.toStringAsFixed(4)}',
+                        ),
+                      ],
                     ),
                   ),
                 ),

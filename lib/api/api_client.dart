@@ -13,6 +13,7 @@ import 'package:graduation_work_mobile/models/plant_request_node.dart';
 import 'package:graduation_work_mobile/models/user_info.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
 
+import 'api_client_contract.dart';
 import 'api_service.dart';
 import 'api_strings.dart';
 import 'model/register_request.dart';
@@ -20,7 +21,7 @@ import 'util/error_json_converter.dart';
 import 'util/example_interceptor.dart';
 import 'util/jaguar_json_converter.dart';
 
-class ApiClient {
+class ApiClient implements ApiClientContract {
   final BuildContext context;
 
   ApiClient(this.context);
