@@ -2,6 +2,7 @@ import 'package:graduation_work_mobile/api/api_client.dart';
 import 'package:graduation_work_mobile/api/model/login_request.dart';
 import 'package:graduation_work_mobile/architecture/base/base_bloc.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginPageBloc extends BaseBloc {
@@ -14,7 +15,11 @@ class LoginPageBloc extends BaseBloc {
   void login(String email, String password) {
     makeCallForSubject<String>(
       loginSubject,
-      () => apiClient.login(LoginRequest(email, password)),
+      () async {
+        await apiClient.login(LoginRequest(email, password));
+        await Storage().setUserEmail(email);
+        return email;
+      },
     );
   }
 

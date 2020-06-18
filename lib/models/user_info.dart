@@ -5,7 +5,7 @@ class UserInfo {
   final bool isModerator;
   final String maskedEmail;
 
-  UserInfo({
+  const UserInfo({
     @required this.id,
     this.isModerator,
     @required this.maskedEmail,

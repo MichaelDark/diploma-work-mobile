@@ -79,7 +79,7 @@ extension ContextExtensions on BuildContext {
 
   void pushSpecimen(PlantNode node) => _push((_) => NodeInfoPage(node.id, false), type: PageTransitionType.Push);
 
-  void pushPlantRequestList() => _push((_) => RequestListPage(), type: PageTransitionType.Push);
+  void pushPlantRequestList([LatLng loc]) => _push((_) => RequestListPage(loc), type: PageTransitionType.Push);
 
   void pushLogOut() => _push((_) => RegisterPage(), type: PageTransitionType.ClearStack);
 }

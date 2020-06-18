@@ -11,7 +11,6 @@ import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
 import 'package:graduation_work_mobile/ui/views/scrollable_viewport.dart';
 import 'package:graduation_work_mobile/ui/views/title_view.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
-import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:graduation_work_mobile/utils/validator.dart';
 import 'package:graduation_work_mobile/utils/validators.dart';
 
@@ -37,7 +36,6 @@ class _RegisterPageState extends State<RegisterPage> {
     super.initState();
     _bloc.registerSubject.listen((dynamic state) async {
       if (mounted && state is SuccessState<String>) {
-        await Storage().setUserEmail(state.data);
         context.pushFirstPage();
       }
     });

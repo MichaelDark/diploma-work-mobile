@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/api/api_client.dart';
 import 'package:graduation_work_mobile/architecture/utils/async_stream_builder.dart';
 import 'package:graduation_work_mobile/architecture/utils/states.dart';
@@ -19,6 +20,10 @@ Stream<AsyncState<List<PlantRequestNode>>> getPlantRequestNodesStream() async* {
 }
 
 class RequestListPage extends StatefulWidget {
+  final LatLng userLocation;
+
+  const RequestListPage([this.userLocation]);
+
   @override
   _RequestListPageState createState() => _RequestListPageState();
 }

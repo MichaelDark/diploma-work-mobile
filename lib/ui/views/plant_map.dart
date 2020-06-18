@@ -13,6 +13,7 @@ class PlantMap extends StatefulWidget {
   final List<PlantNode> nodes;
   final VoidCallback onMapCreated;
   final ValueChanged<PlantNode> onMarkerTap;
+  final bool showLocationButton;
 
   const PlantMap({
     Key key,
@@ -20,6 +21,7 @@ class PlantMap extends StatefulWidget {
     this.nodes,
     this.onMapCreated,
     this.onMarkerTap,
+    this.showLocationButton = true,
   }) : super(key: key);
 
   @override
@@ -104,8 +106,8 @@ class _PlantMapState extends State<PlantMap> {
       onMapCreated: _onMapCreated,
       markers: _markers.toSet() ?? Set(),
       zoomGesturesEnabled: true,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: true,
+      myLocationEnabled: widget.showLocationButton ?? true,
+      myLocationButtonEnabled: widget.showLocationButton ?? true,
       indoorViewEnabled: false,
       tiltGesturesEnabled: false,
       trafficEnabled: false,

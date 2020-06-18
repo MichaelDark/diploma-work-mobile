@@ -10,7 +10,6 @@ import 'package:graduation_work_mobile/ui/views/inputs/default_field.dart';
 import 'package:graduation_work_mobile/ui/views/inputs/standard_field.dart';
 import 'package:graduation_work_mobile/ui/views/no_glow_scroll_behavior.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
-import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:graduation_work_mobile/utils/validator.dart';
 import 'package:graduation_work_mobile/utils/validators.dart';
 
@@ -36,7 +35,6 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _bloc.loginSubject.listen((dynamic state) async {
       if (mounted && state is SuccessState<String>) {
-        await Storage().setUserEmail(state.data);
         context.pushFirstPage();
       }
     });

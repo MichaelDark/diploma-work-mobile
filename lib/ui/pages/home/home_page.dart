@@ -8,6 +8,7 @@ import 'package:graduation_work_mobile/res/app_colors.dart';
 import 'package:graduation_work_mobile/ui/views/plant_map.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
 import 'package:graduation_work_mobile/utils/location_utils.dart';
+import 'package:graduation_work_mobile/utils/storage.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 const _locationDebounceDuration = Duration(milliseconds: 300);
@@ -104,18 +105,13 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _buildImageTab(AssetImage('res/ic_plants.png'), () {
-            context.pushPlantList(_lastUserLocation);
-          }),
+          _buildImageTab(AssetImage('res/ic_plants.png'), () => context.pushPlantList(_lastUserLocation)),
           _buildIconTab(Icons.add_circle, () {
-            //TODO
+            /* TODO */
           }),
-          _buildIconTab(Icons.featured_play_list, () {
-            context.pushPlantRequestList();
-          }),
-          _buildIconTab(Icons.settings, () {
-            context.pushSettings();
-          }),
+          if (Storage().isModerator)
+            _buildIconTab(Icons.featured_play_list, () => context.pushPlantRequestList(_lastUserLocation)),
+          _buildIconTab(Icons.settings, () => context.pushSettings()),
         ],
       ),
     );
