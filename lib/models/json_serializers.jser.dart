@@ -56,6 +56,10 @@ abstract class _$PlantNodeJsonSerializer implements Serializer<PlantNode> {
 }
 
 abstract class _$PlantRequestNodeJsonSerializer implements Serializer<PlantRequestNode> {
+  Serializer<UserInfo> __userInfoJsonSerializer;
+
+  Serializer<UserInfo> get _userInfoJsonSerializer => __userInfoJsonSerializer ??= UserInfoJsonSerializer();
+
   @override
   Map<String, dynamic> toMap(PlantRequestNode model) {
     if (model == null) return null;
@@ -66,6 +70,7 @@ abstract class _$PlantRequestNodeJsonSerializer implements Serializer<PlantReque
     setMapValue(ret, 'otherImages', codeIterable(model.otherImages, (val) => val as String));
     setMapValue(ret, 'latitude', model.latitude);
     setMapValue(ret, 'longitude', model.longitude);
+    setMapValue(ret, 'createUser', _userInfoJsonSerializer.toMap(model.createUser));
     return ret;
   }
 
@@ -79,7 +84,8 @@ abstract class _$PlantRequestNodeJsonSerializer implements Serializer<PlantReque
         otherImages: codeIterable<String>(map['otherImages'] as Iterable, (val) => val as String) ??
             getJserDefault('otherImages'),
         latitude: map['latitude'] as num ?? getJserDefault('latitude'),
-        longitude: map['longitude'] as num ?? getJserDefault('longitude'));
+        longitude: map['longitude'] as num ?? getJserDefault('longitude'),
+        createUser: _userInfoJsonSerializer.fromMap(map['createUser'] as Map) ?? getJserDefault('createUser'));
     return obj;
   }
 }

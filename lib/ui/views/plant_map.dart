@@ -104,21 +104,22 @@ class _PlantMapState extends State<PlantMap> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      onMapCreated: _onMapCreated,
-      markers: _markers.toSet() ?? Set(),
-      zoomGesturesEnabled: widget.isMovable ?? true,
-      myLocationEnabled: widget.showLocationButton ?? true,
-      myLocationButtonEnabled: widget.showLocationButton ?? true,
-      indoorViewEnabled: false,
-      tiltGesturesEnabled: false,
-      trafficEnabled: false,
-      scrollGesturesEnabled: widget.isMovable ?? true,
-      rotateGesturesEnabled: widget.isMovable ?? true,
-      padding: EdgeInsets.only(top: 42),
-      initialCameraPosition: CameraPosition(
-        target: widget.selectedPosition ?? LatLng(56, 36.13),
-        zoom: _startZoom,
+    return SafeArea(
+      child: GoogleMap(
+        onMapCreated: _onMapCreated,
+        markers: _markers.toSet() ?? Set(),
+        zoomGesturesEnabled: widget.isMovable ?? true,
+        myLocationEnabled: widget.showLocationButton ?? true,
+        myLocationButtonEnabled: widget.showLocationButton ?? true,
+        indoorViewEnabled: false,
+        tiltGesturesEnabled: false,
+        trafficEnabled: false,
+        scrollGesturesEnabled: widget.isMovable ?? true,
+        rotateGesturesEnabled: widget.isMovable ?? true,
+        initialCameraPosition: CameraPosition(
+          target: widget.selectedPosition ?? LatLng(56, 36.13),
+          zoom: _startZoom,
+        ),
       ),
     );
   }

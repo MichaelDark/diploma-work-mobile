@@ -22,11 +22,11 @@ abstract class ApiClientContract {
 
   Future<List<PlantRequestNode>> getPlantRequestNodes([LatLng location]);
 
-//  Future<PlantRequestNode> getPlantRequest(int id);
-//
-//  Future<void> approvePlantRequest(int id);
-//
-//  Future<void> declinePlantRequest(int id);
-//
-//  Future<void> grantModerator(int userId);
+  Future<PlantRequestNode> getPlantRequest(int id);
+
+  Future<void> approvePlantRequest(int id);
+
+  Future<void> declinePlantRequest(int id);
+
+  Future<void> grantModerator(int userId);
 }

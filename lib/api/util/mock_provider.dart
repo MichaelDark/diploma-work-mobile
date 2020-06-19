@@ -156,6 +156,7 @@ List<PlantRequestNode> getRequestNodes(LatLng location) {
       description: 'Please help me detect what is this',
       latitude: _getRandomLocation(location.latitude),
       longitude: _getRandomLocation(location.longitude),
+      createUser: _mockUser,
       imageUrl:
           'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557258847-chinese-evergreen-houseplant-1557258690.jpg',
     ),
@@ -164,6 +165,7 @@ List<PlantRequestNode> getRequestNodes(LatLng location) {
       description: 'What is it',
       latitude: _getRandomLocation(location.latitude),
       longitude: _getRandomLocation(location.longitude),
+      createUser: _mockModerator,
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuJDxU_mMOPlyGwDuI2BHfUizdLbynN8NLO8VNY6DI2st6OPo6&usqp=CAU',
     ),
@@ -172,6 +174,7 @@ List<PlantRequestNode> getRequestNodes(LatLng location) {
       description: 'I think, it is a tree',
       latitude: _getRandomLocation(location.latitude),
       longitude: _getRandomLocation(location.longitude),
+      createUser: _mockUser,
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ1KFRlpC6k3s8QSrRJlDj8lmiNpKMA5XObgMgWBXgODNJwpQDh&usqp=CAU',
     ),
@@ -180,6 +183,7 @@ List<PlantRequestNode> getRequestNodes(LatLng location) {
       description: 'WTF?! What is it?!',
       latitude: _getRandomLocation(location.latitude),
       longitude: _getRandomLocation(location.longitude),
+      createUser: _mockModerator,
       imageUrl:
           'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557258847-chinese-evergreen-houseplant-1557258690.jpg',
     ),
@@ -188,6 +192,10 @@ List<PlantRequestNode> getRequestNodes(LatLng location) {
       description: 'Fagus sylvatica specimen',
       latitude: _getRandomLocation(location.latitude),
       longitude: _getRandomLocation(location.longitude),
+      createUser: _mockUser,
+      otherImages: [
+        'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1557258847-chinese-evergreen-houseplant-1557258690.jpg'
+      ],
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRuJDxU_mMOPlyGwDuI2BHfUizdLbynN8NLO8VNY6DI2st6OPo6&usqp=CAU',
     ),
@@ -196,6 +204,7 @@ List<PlantRequestNode> getRequestNodes(LatLng location) {
       description: 'Please, add this Hippophae rhamnoides',
       latitude: _getRandomLocation(location.latitude),
       longitude: _getRandomLocation(location.longitude),
+      createUser: _mockModerator,
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ1KFRlpC6k3s8QSrRJlDj8lmiNpKMA5XObgMgWBXgODNJwpQDh&usqp=CAU',
     ),

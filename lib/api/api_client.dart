@@ -127,6 +127,39 @@ class ApiClient implements ApiClientContract {
     return Future.value();
   }
 
+  //TODO add API
+  @override
+  Future<PlantRequestNode> getPlantRequest(int id) async {
+    await Future.delayed(Duration(seconds: 2));
+    return Future.value(
+      getRequestNodes(defaultLocation).firstWhere(
+        (node) => id == node.id,
+        orElse: () => getRequestNodes(defaultLocation).first,
+      ),
+    );
+  }
+
+  //TODO add API
+  @override
+  Future<void> approvePlantRequest(int id) async {
+    await Future.delayed(Duration(seconds: 2));
+    return Future.value();
+  }
+
+  //TODO add API
+  @override
+  Future<void> declinePlantRequest(int id) async {
+    await Future.delayed(Duration(seconds: 2));
+    return Future.value();
+  }
+
+  //TODO add API
+  @override
+  Future<void> grantModerator(int userId) async {
+    await Future.delayed(Duration(seconds: 2));
+    return Future.value();
+  }
+
   ///
   /// General
   ///

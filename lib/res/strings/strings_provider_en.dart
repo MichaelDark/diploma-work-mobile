@@ -90,4 +90,14 @@ class DefaultStrings {
   String get sendPlantToModerator => 'Send plant to moderator';
 
   String get addImage => "Add image";
+
+  String get title => "Title";
+
+  String get reviewPlantRequest => "Review plant request";
+
+  String get approve => "Approve";
+
+  String get decline => "Decline";
+
+  String get makeModerator => "Make moderator";
 }

@@ -29,6 +29,10 @@ class RequestListPage extends StatefulWidget {
 }
 
 class _RequestListPageState extends State<RequestListPage> {
+  void _onNodeTap(PlantRequestNode node) {
+    context.pushReviewRequest(node);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,97 +84,100 @@ class _RequestListPageState extends State<RequestListPage> {
   }
 
   Widget _buildPlantRequestNode(PlantRequestNode node) {
-    return Container(
-      margin: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            blurRadius: 5,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          IntrinsicHeight(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(4),
-                          child: AspectRatio(
-                            aspectRatio: 1,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                imageUrl: node.imageUrl,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: CircularProgressIndicator(),
+    return GestureDetector(
+      onTap: () => _onNodeTap(node),
+      child: Container(
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              blurRadius: 5,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            IntrinsicHeight(
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.topCenter,
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(4),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: CachedNetworkImage(
+                                  imageUrl: node.imageUrl,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  errorWidget: (context, url, error) => Icon(Icons.error),
                                 ),
-                                errorWidget: (context, url, error) => Icon(Icons.error),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  node.description,
-                  maxLines: 5,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  '${node.latitude.toStringAsFixed(4)}, ${node.longitude.toStringAsFixed(4)}',
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    node.description,
+                    maxLines: 5,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8).copyWith(bottom: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  context.strings.tapToGetInfo,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.withOpacity(0.7),
-                    fontStyle: FontStyle.italic,
+                  SizedBox(height: 4),
+                  Text(
+                    '${node.latitude.toStringAsFixed(4)}, ${node.longitude.toStringAsFixed(4)}',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(8).copyWith(bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    context.strings.tapToGetInfo,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey.withOpacity(0.7),
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

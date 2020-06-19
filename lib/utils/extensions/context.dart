@@ -2,15 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/models/plant_node.dart';
+import 'package:graduation_work_mobile/models/plant_request_node.dart';
 import 'package:graduation_work_mobile/res/strings.dart';
 import 'package:graduation_work_mobile/ui/pages/auth/forgot_password_page.dart';
 import 'package:graduation_work_mobile/ui/pages/auth/login_page.dart';
 import 'package:graduation_work_mobile/ui/pages/auth/register_page.dart';
-import 'package:graduation_work_mobile/ui/pages/home/add_request.dart';
+import 'package:graduation_work_mobile/ui/pages/home/add_request_page.dart';
 import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
 import 'package:graduation_work_mobile/ui/pages/home/node_info_page.dart';
 import 'package:graduation_work_mobile/ui/pages/home/plant_list_page.dart';
 import 'package:graduation_work_mobile/ui/pages/home/request_list_page.dart';
+import 'package:graduation_work_mobile/ui/pages/home/review_request_page.dart';
 import 'package:graduation_work_mobile/ui/pages/home/settings_page.dart';
 import 'package:graduation_work_mobile/ui/pages/tools/language_page.dart';
 import 'package:graduation_work_mobile/ui/pages/tools/permissions_page.dart';
@@ -84,6 +86,11 @@ extension ContextExtensions on BuildContext {
 
   void pushAddRequest([LatLng location]) => _push(
         (_) => AddRequestPage(location),
+        type: PageTransitionType.Push,
+      );
+
+  void pushReviewRequest(PlantRequestNode node) => _push(
+        (_) => ReviewRequestPage(node),
         type: PageTransitionType.Push,
       );
 

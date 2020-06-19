@@ -7,8 +7,9 @@ import 'res/app_colors.dart';
 import 'ui/pages/auth/forgot_password_page_bloc.dart';
 import 'ui/pages/auth/login_page_bloc.dart';
 import 'ui/pages/auth/register_page_bloc.dart';
-import 'ui/pages/home/add_request_bloc.dart';
+import 'ui/pages/home/add_request_page_bloc.dart';
 import 'ui/pages/home/home_page_bloc.dart';
+import 'ui/pages/home/review_request_page_bloc.dart';
 import 'ui/pages/tools/splash_page.dart';
 import 'utils/extensions/context.dart';
 import 'utils/storage.dart';
@@ -31,6 +32,7 @@ class App extends StatelessWidget {
         Bloc((i) => ForgotPasswordPageBloc(i.get<ApiClient>())),
         Bloc((i) => HomePageBloc(i.get<ApiClient>())),
         Bloc((i) => AddRequestPageBloc(i.get<ApiClient>())),
+        Bloc((i) => ReviewRequestPageBloc(i.get<ApiClient>())),
       ],
       dependencies: [
         Dependency((Inject i) => ApiClient(context)),
