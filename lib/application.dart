@@ -27,12 +27,12 @@ class App extends StatelessWidget {
     _setPortraitOnly();
     return BlocProvider(
       blocs: [
-        Bloc((i) => RegisterPageBloc(i.get<ApiClient>())),
-        Bloc((i) => LoginPageBloc(i.get<ApiClient>())),
-        Bloc((i) => ForgotPasswordPageBloc(i.get<ApiClient>())),
-        Bloc((i) => HomePageBloc(i.get<ApiClient>())),
-        Bloc((i) => AddRequestPageBloc(i.get<ApiClient>())),
-        Bloc((i) => ReviewRequestPageBloc(i.get<ApiClient>())),
+        Bloc((i) => RegisterPageBloc(i.get<ApiClient>()), singleton: false),
+        Bloc((i) => LoginPageBloc(i.get<ApiClient>()), singleton: false),
+        Bloc((i) => ForgotPasswordPageBloc(i.get<ApiClient>()), singleton: false),
+        Bloc((i) => HomePageBloc(i.get<ApiClient>()), singleton: false),
+        Bloc((i) => AddRequestPageBloc(i.get<ApiClient>()), singleton: false),
+        Bloc((i) => ReviewRequestPageBloc(i.get<ApiClient>()), singleton: false),
       ],
       dependencies: [
         Dependency((Inject i) => ApiClient(context)),

@@ -40,7 +40,7 @@ class _ReviewRequestPageState extends State<ReviewRequestPage> {
   final picker = ImagePicker();
   bool _isLastActionApprove = false;
 
-  bool _isModerator;
+  bool _isModerator = false;
   double _latitude = 0;
   double _longitude = 0;
   List<String> _imageUrls = [];
@@ -60,7 +60,7 @@ class _ReviewRequestPageState extends State<ReviewRequestPage> {
     });
     _bloc.userGrantSubject.listen((dynamic state) async {
       if (mounted && state is SuccessState) {
-        _isModerator = true;
+        setState(() => _isModerator = true);
       }
     });
   }
@@ -155,6 +155,18 @@ class _ReviewRequestPageState extends State<ReviewRequestPage> {
                     _buildDescriptionField(),
                     SizedBox(height: 16),
                     _buildImages(),
+                    SizedBox(height: 16),
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        context.strings.createdBy + " " + widget.node.createUser.maskedEmail,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Montserrat',
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 16),
                     _buildGrantButtonAsync(),
                     SizedBox(height: 16),
@@ -289,20 +301,22 @@ class _ReviewRequestPageState extends State<ReviewRequestPage> {
   }
 
   Widget _buildGrantButtonAsync() {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 16),
-        AsyncStreamBuilder<void>(
-          _bloc.userGrantSubject,
-          initialBuilder: (_) => _isModerator ? Container() : _buildGrantButton(),
-          failureBuilder: (_, error) => ErrorView(
-            error,
-            onReload: () => _grantModerator,
-            margin: EdgeInsets.all(24),
-          ),
-        ),
-      ],
-    );
+    return _isModerator
+        ? Container()
+        : Column(
+            children: <Widget>[
+              SizedBox(height: 16),
+              AsyncStreamBuilder<void>(
+                _bloc.userGrantSubject,
+                initialBuilder: (_) => _buildGrantButton(),
+                failureBuilder: (_, error) => ErrorView(
+                  error,
+                  onReload: () => _grantModerator,
+                  margin: EdgeInsets.all(24),
+                ),
+              ),
+            ],
+          );
   }
 
   Widget _buildGrantButton() {
