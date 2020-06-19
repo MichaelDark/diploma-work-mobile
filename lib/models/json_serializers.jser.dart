@@ -7,6 +7,9 @@ part of 'json_serializers.dart';
 // **************************************************************************
 
 abstract class _$PlantNodeJsonSerializer implements Serializer<PlantNode> {
+  Serializer<UserInfo> __userInfoJsonSerializer;
+
+  Serializer<UserInfo> get _userInfoJsonSerializer => __userInfoJsonSerializer ??= UserInfoJsonSerializer();
   Serializer<PlantNode> __plantNodeJsonSerializer;
 
   Serializer<PlantNode> get _plantNodeJsonSerializer => __plantNodeJsonSerializer ??= PlantNodeJsonSerializer();
@@ -16,6 +19,7 @@ abstract class _$PlantNodeJsonSerializer implements Serializer<PlantNode> {
     if (model == null) return null;
     Map<String, dynamic> ret = <String, dynamic>{};
     setMapValue(ret, 'isArea', model.isArea);
+    setMapValue(ret, 'imageUrls', codeIterable(model.imageUrls, (val) => val as String));
     setMapValue(ret, 'id', model.id);
     setMapValue(ret, 'title', model.title);
     setMapValue(ret, 'description', model.description);
@@ -23,6 +27,8 @@ abstract class _$PlantNodeJsonSerializer implements Serializer<PlantNode> {
     setMapValue(ret, 'otherImages', codeIterable(model.otherImages, (val) => val as String));
     setMapValue(ret, 'latitude', model.latitude);
     setMapValue(ret, 'longitude', model.longitude);
+    setMapValue(ret, 'createUser', _userInfoJsonSerializer.toMap(model.createUser));
+    setMapValue(ret, 'approveUser', _userInfoJsonSerializer.toMap(model.approveUser));
     setMapValue(
         ret, 'childNodes', codeIterable(model.childNodes, (val) => _plantNodeJsonSerializer.toMap(val as PlantNode)));
     return ret;
@@ -40,6 +46,8 @@ abstract class _$PlantNodeJsonSerializer implements Serializer<PlantNode> {
             getJserDefault('otherImages'),
         latitude: map['latitude'] as num ?? getJserDefault('latitude'),
         longitude: map['longitude'] as num ?? getJserDefault('longitude'),
+        createUser: _userInfoJsonSerializer.fromMap(map['createUser'] as Map) ?? getJserDefault('createUser'),
+        approveUser: _userInfoJsonSerializer.fromMap(map['approveUser'] as Map) ?? getJserDefault('approveUser'),
         childNodes: codeIterable<PlantNode>(
                 map['childNodes'] as Iterable, (val) => _plantNodeJsonSerializer.fromMap(val as Map)) ??
             getJserDefault('childNodes'));

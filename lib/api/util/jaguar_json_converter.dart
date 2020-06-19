@@ -5,7 +5,7 @@ class JaguarJsonConverter extends JsonConverter {
   @override
   Response<ResultType> convertResponse<ResultType, Item>(Response response) {
     final jsonResult = decodeJson(response);
-    return jsonResult.replace<ResultType>(body: _decode<Item>(jsonResult.body));
+    return jsonResult.copyWith<ResultType>(body: _decode<Item>(jsonResult.body));
   }
 
   dynamic _decode<Item>(entity) {
@@ -21,7 +21,7 @@ class JaguarJsonConverter extends JsonConverter {
   @override
   Request convertRequest(Request request) {
     return super.convertRequest(
-      request.replace(
+      request.copyWith(
         body: serializerRepo.to(request.body),
       ),
     );

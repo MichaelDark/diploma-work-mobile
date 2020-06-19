@@ -12,7 +12,7 @@ class PlantRequest {
 
   const PlantRequest({
     @required this.description,
-    @required this.images,
+    this.images,
     @required this.latitude,
     @required this.longitude,
   });

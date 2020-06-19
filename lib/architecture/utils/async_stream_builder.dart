@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_work_mobile/api/model/request_error.dart';
 import 'package:graduation_work_mobile/ui/views/error_view.dart';
 import 'package:graduation_work_mobile/utils/functional_interfaces.dart';
 
@@ -41,18 +40,12 @@ class AsyncStreamBuilder<T> extends StatelessWidget {
     return loadingBuilder != null ? loadingBuilder(context) : _buildLoading();
   }
 
-  Widget _buildSuccessState(
-      BuildContext context, SuccessState<T> successState) {
-    return successBuilder != null
-        ? successBuilder(context, successState.data)
-        : _buildInitialState(context);
+  Widget _buildSuccessState(BuildContext context, SuccessState<T> successState) {
+    return successBuilder != null ? successBuilder(context, successState.data) : _buildInitialState(context);
   }
 
-  Widget _buildFailureState(
-      BuildContext context, FailureState<T> failureState) {
-    return failureBuilder != null
-        ? failureBuilder(context, failureState.failure)
-        : _buildError(failureState.failure);
+  Widget _buildFailureState(BuildContext context, FailureState<T> failureState) {
+    return failureBuilder != null ? failureBuilder(context, failureState.failure) : _buildError(failureState.failure);
   }
 
   Widget _buildInitialState(BuildContext context) {
@@ -69,12 +62,12 @@ class AsyncStreamBuilder<T> extends StatelessWidget {
   }
 
   Widget _buildError(dynamic errorObject) {
-    String errorText;
-    if (errorObject is RequestError) {
-      errorText = errorObject.error;
-    } else {
-      errorText = '$errorObject';
-    }
+//    String errorText;
+//    if (errorObject is RequestError) {
+//      errorText = errorObject.error;
+//    } else {
+//      errorText = '$errorObject';
+//    }
 
     return ErrorView(
       errorObject,

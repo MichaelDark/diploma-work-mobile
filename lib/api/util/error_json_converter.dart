@@ -31,6 +31,6 @@ class ErrorJsonConverter extends JsonConverter {
   Response convertError<ResultType, ItemType>(Response response) {
     // use [JsonConverter] to decode json
     final jsonRes = super.convertError(response);
-    return jsonRes.replace(body: _errorSerializer.fromMap(jsonRes.body));
+    return jsonRes.copyWith(body: _errorSerializer.fromMap(jsonRes.body));
   }
 }
