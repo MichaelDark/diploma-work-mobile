@@ -51,7 +51,7 @@ class _AddRequestPageState extends State<AddRequestPage> {
     _latitude = widget.userPosition?.latitude ?? 0;
     _longitude = widget.userPosition?.longitude ?? 0;
     _bloc.createSubject.listen((dynamic state) async {
-      if (mounted && state is SuccessState<String>) {
+      if (mounted && state is SuccessState) {
         context.pushFirstPage();
       }
     });
