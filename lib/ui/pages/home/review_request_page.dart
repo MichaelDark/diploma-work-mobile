@@ -354,8 +354,8 @@ class _ReviewRequestPageState extends State<ReviewRequestPage> {
           child: Padding(
             padding: EdgeInsets.all(12),
             child: ColoredButton(
-              text: context.strings.approve,
-              onPressed: (_) => _onActionTap(true),
+              text: context.strings.decline,
+              onPressed: (_) => _onActionTap(false),
             ),
           ),
         ),
@@ -363,8 +363,8 @@ class _ReviewRequestPageState extends State<ReviewRequestPage> {
           child: Padding(
             padding: EdgeInsets.all(12),
             child: ColoredButton(
-              text: context.strings.decline,
-              onPressed: (_) => _onActionTap(false),
+              text: context.strings.approve,
+              onPressed: (_) => _onActionTap(true),
             ),
           ),
         ),
