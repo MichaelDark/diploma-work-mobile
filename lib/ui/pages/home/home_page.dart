@@ -106,9 +106,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildImageTab(AssetImage('res/ic_plants.png'), () => context.pushPlantList(_lastUserLocation)),
-          _buildIconTab(Icons.add_circle, () {
-            /* TODO */
-          }),
+          _buildIconTab(Icons.add_circle, () => context.pushAddRequest(_lastUserLocation)),
           if (Storage().isModerator)
             _buildIconTab(Icons.featured_play_list, () => context.pushPlantRequestList(_lastUserLocation)),
           _buildIconTab(Icons.settings, () => context.pushSettings()),

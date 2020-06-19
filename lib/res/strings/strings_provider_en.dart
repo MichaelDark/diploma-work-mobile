@@ -78,4 +78,16 @@ class DefaultStrings {
   String get approvedBy => 'Approved by';
 
   String get specimen => 'Specimen';
+
+  String get interfaceLanguage => 'Interface language';
+
+  String get addPlant => 'Add plant';
+
+  String get tapOnMapToPickLocation => 'Tap on map to pick location';
+
+  String get description => 'Description';
+
+  String get sendPlantToModerator => 'Send plant to moderator';
+
+  String get addImage => "Add image";
 }

@@ -9,6 +9,7 @@ import 'package:graduation_work_mobile/api/model/forgot_password_request.dart';
 import 'package:graduation_work_mobile/api/model/login_request.dart';
 import 'package:graduation_work_mobile/api/model/request_error.dart';
 import 'package:graduation_work_mobile/models/plant_node.dart';
+import 'package:graduation_work_mobile/models/plant_request.dart';
 import 'package:graduation_work_mobile/models/plant_request_node.dart';
 import 'package:graduation_work_mobile/models/user_info.dart';
 import 'package:graduation_work_mobile/utils/extensions/context.dart';
@@ -52,6 +53,7 @@ class ApiClient implements ApiClientContract {
   ///
 
   //TODO add API
+  @override
   Future<String> register(RegisterRequest request) async {
     await Future.delayed(Duration(seconds: 2));
     users[request.email] = UserInfo(
@@ -63,6 +65,7 @@ class ApiClient implements ApiClientContract {
   }
 
   //TODO add API
+  @override
   Future<String> login(LoginRequest request) async {
     if (request.password != defaultPassword) throw "Incorrect password";
     if (users.keys.where((email) => email.trim() == request.email.trim()).isEmpty) throw "Email do not exist";
@@ -73,12 +76,14 @@ class ApiClient implements ApiClientContract {
   }
 
   //TODO add API
+  @override
   Future<String> forgotPassword(ForgotPasswordRequest request) async {
     await Future.delayed(Duration(seconds: 2));
     return request.email;
   }
 
   //TODO add API
+  @override
   Future<List<PlantNode>> getPlantNodes([LatLng location]) async {
     final mockLocation = location ?? defaultLocation;
     await Future.delayed(Duration(seconds: 2));
@@ -86,6 +91,7 @@ class ApiClient implements ApiClientContract {
   }
 
   //TODO add API
+  @override
   Future<PlantNode> getPlantNode(int id, bool isArea) async {
     await Future.delayed(Duration(milliseconds: 500));
     var node = getNodes(defaultLocation).firstWhere(
@@ -107,10 +113,18 @@ class ApiClient implements ApiClientContract {
   }
 
   //TODO add API
+  @override
   Future<List<PlantRequestNode>> getPlantRequestNodes([LatLng location]) async {
     final mockLocation = location ?? defaultLocation;
     await Future.delayed(Duration(seconds: 2));
     return Future.value(getRequestNodes(mockLocation));
+  }
+
+  //TODO add API
+  @override
+  Future<void> addPlantRequest(PlantRequest request) async {
+    await Future.delayed(Duration(seconds: 2));
+    return Future.value();
   }
 
   ///

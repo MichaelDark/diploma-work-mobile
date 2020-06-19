@@ -10,6 +10,7 @@ const _startZoom = 12.0;
 
 class PlantMap extends StatefulWidget {
   final LatLng selectedPosition;
+  final bool isMovable;
   final List<PlantNode> nodes;
   final VoidCallback onMapCreated;
   final ValueChanged<PlantNode> onMarkerTap;
@@ -22,6 +23,7 @@ class PlantMap extends StatefulWidget {
     this.onMapCreated,
     this.onMarkerTap,
     this.showLocationButton = true,
+    this.isMovable = true,
   }) : super(key: key);
 
   @override
@@ -105,13 +107,14 @@ class _PlantMapState extends State<PlantMap> {
     return GoogleMap(
       onMapCreated: _onMapCreated,
       markers: _markers.toSet() ?? Set(),
-      zoomGesturesEnabled: true,
+      zoomGesturesEnabled: widget.isMovable ?? true,
       myLocationEnabled: widget.showLocationButton ?? true,
       myLocationButtonEnabled: widget.showLocationButton ?? true,
       indoorViewEnabled: false,
       tiltGesturesEnabled: false,
       trafficEnabled: false,
-      rotateGesturesEnabled: true,
+      scrollGesturesEnabled: widget.isMovable ?? true,
+      rotateGesturesEnabled: widget.isMovable ?? true,
       padding: EdgeInsets.only(top: 42),
       initialCameraPosition: CameraPosition(
         target: widget.selectedPosition ?? LatLng(56, 36.13),

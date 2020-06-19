@@ -33,6 +33,8 @@ class StandardField extends StatelessWidget {
   final Color fontColor;
   final String fontFamily;
   final FontWeight fontWeight;
+  final TextInputType keyboardType;
+  final int maxLines;
 
   final double hintFontSize;
   final Color hintFontColor;
@@ -61,6 +63,8 @@ class StandardField extends StatelessWidget {
     this.onChanged,
     bool obscuredText,
     this.additionalPadding,
+    this.keyboardType,
+    this.maxLines,
   }) : obscuredText = obscuredText ?? false;
 
   TextInputAction getTextInputAction() {
@@ -78,6 +82,8 @@ class StandardField extends StatelessWidget {
       controller: fieldData.controller,
       focusNode: fieldData.node,
       style: createTextFieldStyle(),
+      keyboardType: keyboardType,
+      maxLines: maxLines,
       cursorColor: activeColor,
       decoration: createInputDecoration(
         context,

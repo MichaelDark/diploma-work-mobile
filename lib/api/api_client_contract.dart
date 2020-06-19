@@ -1,5 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/models/plant_node.dart';
+import 'package:graduation_work_mobile/models/plant_request.dart';
 
 import 'model/forgot_password_request.dart';
 import 'model/login_request.dart';
@@ -16,8 +17,8 @@ abstract class ApiClientContract {
 
   Future<PlantNode> getPlantNode(int id, bool isArea);
 
-//  Future<void> addPlantRequest(PlantRequest request);
-//
+  Future<void> addPlantRequest(PlantRequest request);
+
 //  Future<PlantRequestNode> getPlantRequest(int id);
 //
 //  Future<void> approvePlantRequest(int id);

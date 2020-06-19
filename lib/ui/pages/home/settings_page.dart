@@ -42,14 +42,33 @@ class _SettingsPageState extends State<SettingsPage> {
                 behavior: NoGlowScrollBehavior(),
                 child: ListView(
                   children: <Widget>[
-                    LanguageBar(),
                     ListTile(
-                      title: Text(context.strings.logout),
+                      contentPadding: EdgeInsets.only(left: 32, right: 8),
+                      title: Text(
+                        context.strings.interfaceLanguage,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      trailing: LanguageBar(),
+                    ),
+                    _buildSeparator(),
+                    ListTile(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 32),
+                      title: Text(
+                        context.strings.logout,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       onTap: () async {
                         await Storage().setUserEmail(null);
                         context.pushLogOut();
                       },
-                    )
+                    ),
+                    _buildSeparator(),
                   ],
                 ),
               ),
@@ -57,6 +76,14 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildSeparator() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      height: 1,
+      color: Colors.grey,
     );
   }
 }

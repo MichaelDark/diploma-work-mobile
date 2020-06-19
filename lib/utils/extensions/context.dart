@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:graduation_work_mobile/models/plant_node.dart';
 import 'package:graduation_work_mobile/res/strings.dart';
-import 'package:graduation_work_mobile/ui/pages/auth/forgot_password/forgot_password_page.dart';
-import 'package:graduation_work_mobile/ui/pages/auth/login/login_page.dart';
-import 'package:graduation_work_mobile/ui/pages/auth/register/register_page.dart';
+import 'package:graduation_work_mobile/ui/pages/auth/forgot_password_page.dart';
+import 'package:graduation_work_mobile/ui/pages/auth/login_page.dart';
+import 'package:graduation_work_mobile/ui/pages/auth/register_page.dart';
+import 'package:graduation_work_mobile/ui/pages/home/add_request.dart';
 import 'package:graduation_work_mobile/ui/pages/home/home_page.dart';
-import 'package:graduation_work_mobile/ui/pages/home/node_info/node_info_page.dart';
-import 'package:graduation_work_mobile/ui/pages/home/plant_list/plant_list_page.dart';
-import 'package:graduation_work_mobile/ui/pages/home/request_list/request_list_page.dart';
-import 'package:graduation_work_mobile/ui/pages/home/settings/settings_page.dart';
+import 'package:graduation_work_mobile/ui/pages/home/node_info_page.dart';
+import 'package:graduation_work_mobile/ui/pages/home/plant_list_page.dart';
+import 'package:graduation_work_mobile/ui/pages/home/request_list_page.dart';
+import 'package:graduation_work_mobile/ui/pages/home/settings_page.dart';
 import 'package:graduation_work_mobile/ui/pages/tools/language_page.dart';
 import 'package:graduation_work_mobile/ui/pages/tools/permissions_page.dart';
 import 'package:graduation_work_mobile/utils/extensions/permissions.dart';
@@ -80,6 +81,11 @@ extension ContextExtensions on BuildContext {
   void pushSpecimen(PlantNode node) => _push((_) => NodeInfoPage(node.id, false), type: PageTransitionType.Push);
 
   void pushPlantRequestList([LatLng loc]) => _push((_) => RequestListPage(loc), type: PageTransitionType.Push);
+
+  void pushAddRequest([LatLng location]) => _push(
+        (_) => AddRequestPage(location),
+        type: PageTransitionType.Push,
+      );
 
   void pushLogOut() => _push((_) => RegisterPage(), type: PageTransitionType.ClearStack);
 }

@@ -24,12 +24,14 @@ class LanguageBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          _buildLanguageButton(SupportedLocale.english),
-          _buildLanguageButton(SupportedLocale.ukrainian),
-        ],
+      child: IntrinsicWidth(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            _buildLanguageButton(SupportedLocale.english),
+            _buildLanguageButton(SupportedLocale.ukrainian),
+          ],
+        ),
       ),
     );
   }

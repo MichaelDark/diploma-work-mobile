@@ -189,6 +189,7 @@ class _PlantNodeViewState extends State<PlantNodeView> {
                       selectedPosition: LatLng(_node.latitude, _node.longitude),
                       nodes: [_node],
                       onMarkerTap: (_) {},
+                      isMovable: false,
                       showLocationButton: false,
                     ),
                   )

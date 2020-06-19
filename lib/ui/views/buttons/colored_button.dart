@@ -62,6 +62,7 @@ class ColoredButton extends StatelessWidget {
             onPressed: () => onPressed(context),
             child: Text(
               text,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: fontSize,
                 color: _isOutlined ? colorPrimary : colorSecondary,

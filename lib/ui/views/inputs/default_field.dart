@@ -6,7 +6,9 @@ import 'standard_field.dart';
 class DefaultField extends StatelessWidget {
   final FieldData fieldData;
   final String labelText;
+  final int maxLines;
   final bool obscuredText;
+  final TextInputType keyboardType;
   final FocusNode nextFocus;
   final VoidCallback onDone;
 
@@ -14,8 +16,10 @@ class DefaultField extends StatelessWidget {
     this.fieldData, {
     @required this.labelText,
     this.obscuredText,
+    this.keyboardType,
     this.nextFocus,
     this.onDone,
+    this.maxLines = 1,
   });
 
   @override
@@ -24,6 +28,8 @@ class DefaultField extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
       child: StandardField(
         labelText: labelText,
+        keyboardType: keyboardType,
+        maxLines: maxLines,
         fieldData: fieldData,
         fontSize: 20,
         fontFamily: 'Montserrat',
