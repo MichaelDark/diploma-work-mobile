@@ -65,6 +65,7 @@ abstract class _$PlantRequestNodeJsonSerializer implements Serializer<PlantReque
     if (model == null) return null;
     Map<String, dynamic> ret = <String, dynamic>{};
     setMapValue(ret, 'id', model.id);
+    setMapValue(ret, 'title', model.title);
     setMapValue(ret, 'description', model.description);
     setMapValue(ret, 'imageUrl', model.imageUrl);
     setMapValue(ret, 'otherImages', codeIterable(model.otherImages, (val) => val as String));
@@ -79,6 +80,7 @@ abstract class _$PlantRequestNodeJsonSerializer implements Serializer<PlantReque
     if (map == null) return null;
     final obj = PlantRequestNode(
         id: map['id'] as int ?? getJserDefault('id'),
+        title: map['title'] as String ?? getJserDefault('title'),
         description: map['description'] as String ?? getJserDefault('description'),
         imageUrl: map['imageUrl'] as String ?? getJserDefault('imageUrl'),
         otherImages: codeIterable<String>(map['otherImages'] as Iterable, (val) => val as String) ??
@@ -117,6 +119,7 @@ abstract class _$PlantRequestJsonSerializer implements Serializer<PlantRequest> 
   Map<String, dynamic> toMap(PlantRequest model) {
     if (model == null) return null;
     Map<String, dynamic> ret = <String, dynamic>{};
+    setMapValue(ret, 'title', model.title);
     setMapValue(ret, 'description', model.description);
     setMapValue(ret, 'latitude', model.latitude);
     setMapValue(ret, 'longitude', model.longitude);
@@ -127,6 +130,7 @@ abstract class _$PlantRequestJsonSerializer implements Serializer<PlantRequest> 
   PlantRequest fromMap(Map map) {
     if (map == null) return null;
     final obj = PlantRequest(
+        title: map['title'] as String ?? getJserDefault('title'),
         description: map['description'] as String ?? getJserDefault('description'),
         latitude: map['latitude'] as num ?? getJserDefault('latitude'),
         longitude: map['longitude'] as num ?? getJserDefault('longitude'));

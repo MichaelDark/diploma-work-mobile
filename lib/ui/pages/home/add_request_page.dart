@@ -30,7 +30,7 @@ class AddRequestPage extends StatefulWidget {
   _AddRequestPageState createState() => _AddRequestPageState();
 }
 
-enum _AddRequestField { Description }
+enum _AddRequestField { Title, Description }
 
 class _AddRequestPageState extends State<AddRequestPage> {
   AddRequestPageBloc _bloc = BlocProvider.getBloc<AddRequestPageBloc>();
@@ -68,6 +68,12 @@ class _AddRequestPageState extends State<AddRequestPage> {
       FocusScope.of(context).requestFocus(FocusNode());
       final validator = Validator()
         ..add<String, String>(
+          data: _fields[_AddRequestField.Title].controller.text,
+          onValidate: getEmptyValidation(context),
+          onValid: (_) => _fields[_AddRequestField.Title].errorText = null,
+          onInvalid: (String errorText) => _fields[_AddRequestField.Title].errorText = errorText,
+        )
+        ..add<String, String>(
           data: _fields[_AddRequestField.Description].controller.text,
           onValidate: getEmptyValidation(context),
           onValid: (_) => _fields[_AddRequestField.Description].errorText = null,
@@ -80,6 +86,7 @@ class _AddRequestPageState extends State<AddRequestPage> {
       if (validator.validate()) {
         _bloc.createPlantRequest(
           PlantRequest(
+            title: _fields[_AddRequestField.Title].controller.text,
             description: _fields[_AddRequestField.Description].controller.text,
             longitude: -_longitude,
             latitude: _latitude,
@@ -207,11 +214,17 @@ class _AddRequestPageState extends State<AddRequestPage> {
       child: Column(
         children: <Widget>[
           DefaultField(
+            _fields[_AddRequestField.Title],
+            maxLines: 2,
+            keyboardType: TextInputType.text,
+            labelText: context.strings.title,
+            onDone: () => FocusScope.of(context).requestFocus(FocusNode()),
+          ),
+          DefaultField(
             _fields[_AddRequestField.Description],
             maxLines: 5,
             keyboardType: TextInputType.multiline,
             labelText: context.strings.description,
-            nextFocus: _fields[_AddRequestField.Description].node,
             onDone: () => FocusScope.of(context).requestFocus(FocusNode()),
           ),
         ],

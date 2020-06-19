@@ -5,6 +5,7 @@ import 'user_info.dart';
 
 class PlantRequestNode {
   final int id;
+  final String title;
   final String description;
   final String imageUrl;
   final List<String> otherImages;
@@ -14,6 +15,7 @@ class PlantRequestNode {
 
   PlantRequestNode({
     @required this.id,
+    @required this.title,
     @required this.description,
     @required this.imageUrl,
     this.otherImages,
